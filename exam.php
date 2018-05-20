@@ -5,7 +5,11 @@
    oci_execute($stid);
 
    while ($row = oci_fetch_assoc($stid)) {
-    print_r($row);
+    echo $row['DEPTNO'], $row['DEPTNAME'];
+        if(strcmp($row['DEPTNAME'],'영업')==0)
+        {
+                echo "<p>hi</p>";
+        }
     echo "<br>";
 }
 
