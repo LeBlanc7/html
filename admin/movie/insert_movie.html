@@ -20,6 +20,27 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+    <style>
+    .form_insert{
+      background-color: #FAFAFA;
+      border: 1 solid #000000;
+      width: 60%;
+      font-size: 20px;
+      margin-bottom: 20px;
+      padding: 15px;
+    }
+    .box{
+      height: 23px;
+      width: 120px;
+    }
+    #button_submit{
+      height: 50px;
+      width: 200px;
+      margin-bottom :20px;
+      background: rgba(255,255,255,.5);
+    }
+    </style>
   </head>
 
   <body>
@@ -81,18 +102,37 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <ul style = " padding-left: 0; display : inline-flex; list-style-type: none ">
-            <li class="nav-item" style = "display: inline">
-              <a class="nav-link" href="update_movie.html">Movie</a>
-            </li>
-            <li class="nav-item" style = "display: inline">
-              <a class="nav-link" href="update_genre.html">Genre</a>
-            </li>
-            <li class="nav-item" style = "display: inline">
-              <a class="nav-link" href="update_rate.html">Rate</a>
-            </li>
-          </ul>
+         <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="menu_change">
+               <ul style = " padding-left: 0; display : inline-flex; list-style-type: none ">
+                <li class="nav-item" style = "display: inline">
+                  <a class="nav-link" href="/admin/movie/menu_movie.html">Movie</a>
+                </li>
+                <li class="nav-item" style = "display: inline">
+                  <a class="nav-link" href="/admin/genre/menu_genre.html">Genre</a>
+                </li>
+                <li class="nav-item" style = "display: inline">
+                  <a class="nav-link" href="/admin/rate/menu_rate.html">Rate</a>
+                </li>
+              </ul>
+            </div>
+            <div class="form_insert">
+            <form name="insertform" method="post" action="movie_genre.php" onsubmit='return validcheck()'>
+
+                <label size>영 화 이 름 : </label><input type="text" name="mv_nm" class="box"><br>
+	        <label size>감 독 이 름 : </label><input type="text" name="dir_nm" class="box"><br>
+		<label size>영 화 소 개 : </label><input type="text" name="mv_int" class="box"><br>
+		<label size>배급사 이름 : </label><input type="text" name="dtbr_nm" class="box"><br>
+		<label size>배 우 이 름 : </label><input type="text" name="atr_nm1" class="box"><br>
+		<label size>배 우 이 름 : </label><input type="text" name="atr_nm2" class="box"><br>
+		<label size>배 우 이 름 : </label><input type="text" name="atr_nm3" class="box"><br>
+		<label size>상 영 시 간 : </label><input type="text" name="scr_time" class="box"><br>
+		<label size>영 화 장 르 : </label><input type="text" name="genre" class="box"><br>
+		<label size>관 람 등 급 : </label><input type="text" name="rate" class="box"><br>
+
+            </div>
+            <input class="button" id="button_submit" type="submit" value="영화 추가하기" onclick="validcheck();">
+            </form>
         </div>
       </div>
     </div>
@@ -142,7 +182,9 @@
 
     <!-- Custom scripts for this template -->
     <script src="/js/clean-blog.min.js"></script>
+    <script type="text/javascript" src="/admin/js/movie_validcheck.js"></script>
 
   </body>
 
 </html>
+
