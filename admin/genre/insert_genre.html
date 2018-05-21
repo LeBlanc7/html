@@ -22,27 +22,28 @@
     <link href="/css/clean-blog.min.css" rel="stylesheet">
     
     <style>
-     
+
     .form_insert{
       background-color: #FAFAFA;
       border: 1 solid #000000;
-      height: 100px;
-      width: 350px;
+      width: 60%;
       font-size: 20px;
-      margin: 10px 10px;
-      padding: 10px 10px;
+      margin-bottom: 20px;
+      padding: 15px;
     }
-      
+
     .box{
       height: 23px;
       width: 120px;
     }
-      
+
     #button_submit{
       height: 50px;
-      width: 100px;
+      width: 200px;
+      margin-bottom :20px;
+      background: rgba(255,255,255,.5);
     }
-      
+
     </style>
   </head>
 
@@ -105,25 +106,26 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <ul style = " padding-left: 0; display : inline-flex; list-style-type: none ">
-              <li class="nav-item" style = "display: inline">
-                <a class="nav-link" href="update_movie.html">Movie</a>
-              </li>
-              <li class="nav-item" style = "display: inline">
-                <a class="nav-link" href="update_genre.html">Genre</a>
-              </li>
-              <li class="nav-item" style = "display: inline">
-                <a class="nav-link" href="update_rate.html">Rate</a>
-              </li>
-            </ul>
+         <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="menu_change">
+               <ul style = " padding-left: 0; display : inline-flex; list-style-type: none ">
+                <li class="nav-item" style = "display: inline">
+                  <a class="nav-link" href="/admin/movie/menu_movie.html">Movie</a>
+                </li>
+                <li class="nav-item" style = "display: inline">
+                  <a class="nav-link" href="/admin/genre/menu_genre.html">Genre</a>
+                </li>
+                <li class="nav-item" style = "display: inline">
+                  <a class="nav-link" href="/admin/rate/menu_rate.html">Rate</a>
+                </li>
+              </ul>
+            </div>
             <div class="form_insert">
             <form name="insertform" method="post" action="./insert_genre.php" onsubmit='return validcheck()'>
 
               <label size>장 르 : </label><input type="text" name="genre" class="box"><br>
-              
+
             </div>
-            <br>
             <input class="button" id="button_submit" type="submit" value="장르 추가하기" onclick="validcheck();">
             </form>
         </div>
@@ -175,7 +177,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="/js/clean-blog.min.js"></script>
-    <script type="text/javascript" src="/admin/js/genre_validcheck.js"></script>
+
   </body>
 
 </html>
