@@ -11,8 +11,6 @@ if (!$conn) {
    echo $m['message'], "\n";
    exit;
 }
-else {
-   print "Connected to Oracle!";
-}
+
 
 ?>
