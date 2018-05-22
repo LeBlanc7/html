@@ -1,7 +1,7 @@
 function validcheck(){
-  
+
   form = document.insertform;
-  
+
   if(form.mv_nm.value==""){
     alert("영화 제목을 입력해주세요");
     return false;
@@ -12,6 +12,10 @@ function validcheck(){
   }
   else if(form.mv_int.value==""){
     alert("영화 소개를 입력해주세요");
+    return false;
+  }
+  else if(form.dbtr_nm.value==""){
+    alert("배급사를 입력해주세요");
     return false;
   }
   else if(form.atr_nm1.value==""){
