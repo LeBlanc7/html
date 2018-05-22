@@ -2,6 +2,15 @@
 
     include 'dbconnect.php';
    // Parse SQL
+    $confirm = "SELECT DEPTNO FROM DEPARTMENT WHERE DEPTNAME='개발'";
+    $result = oci_parse($conn,$confirm);
+    oci_execute($result);
+
+    if(oci_fetch_assoc($result))
+    {
+        echo ("<script>alert('같은 이름의 장르가 존재합니다');</script>");
+    }
+    else{
     $query = "INSERT INTO DEPARTMENT (DEPTNO,DEPTNAME,FLOOR) VALUES (DEPT_SEQ.NEXTVAL,'기획','5')";
     $stmt = oci_parse($conn,$query);
 
@@ -27,5 +36,6 @@
     else
     {
 	echo "<p>success!</p>";
+    }
     }
 ?>
