@@ -49,7 +49,7 @@
               else{
                 $user_name = $_SESSION['user_name'];
                 echo "<li class='nav-item'>";
-                echo "<a class='nav-link' href='/login/member_info.html'>";
+                echo "<a class='nav-link' href='/login/member_info.html?id=".$user_name."'>";
                 echo "$user_name";
                 echo "님</a>";
                 echo "</li><li class='nav-item'>";
