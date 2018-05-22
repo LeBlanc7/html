@@ -1,6 +1,15 @@
 <?php
    include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
    // Parse SQL
+    $confirm = "SELECT * FROM MV_GNR WHERE GNR_NM='$_POST[genre]'";
+    $result = oci_parse($conn,$confirm);
+    oci_execute($result);
+    if(oci_fetch_assoc($result))
+    {
+        echo ("<script>alert('DB에 같은 이름의 장르가 존재합니다'); location.replace('insert_genre.html');</script>");
+    }
+    else{
+
     $query = "INSERT INTO MV_GNR (GNR_NUM,GNR_NM) VALUES (GENRE_SEQ.NEXTVAL,'$_POST[genre]')";
     $stmt = oci_parse($conn,$query);
     
@@ -18,6 +27,6 @@
     {
 	echo("<script>alert('DB에 성공적으로 입력되었습니다!'); location.replace('insert_genre.html');</script>"); 
     }
-    
+    }
     oci_close($conn);
 ?>
