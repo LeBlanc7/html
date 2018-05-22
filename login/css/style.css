@@ -147,14 +147,16 @@
 .login_template .login_fields__user,
 .login_template .login_fields__password ,
 .login_template .login_fields__name,
-.login_template .login_fields__phonenum{
+.login_template .login_fields__phonenum,
+.login_template .login_fields__rrnum{
   position: relative;
   width : 100%;
 }
 .login_template .login_fields__user #login_fields_username,
 .login_template .login_fields__password #login_fields_passname,
 .login_template .login_fields__name #login_fields_name,
-.login_template .login_fields__phonenum #login_fields_phonenum
+.login_template .login_fields__phonenum #login_fields_phonenum,
+.login_template .login_fields__rrnum #login_fields_rrnum
 {
   width : 100%;
 } 
