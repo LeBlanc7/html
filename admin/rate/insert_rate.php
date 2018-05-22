@@ -13,7 +13,6 @@
     	$stmt = oci_parse($conn,$query);
     
     	// Execute statement
-    	oci_execute($stmt, OCI_DEFAULT);
     	$success = oci_execute($stmt, OCI_DEFAULT);
 
     	if($success){

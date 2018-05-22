@@ -23,14 +23,21 @@
     	$row3 = oci_fetch_assoc($result3);
     	$gnr_num = $row3['GNR_NUM'];
 
-    	$query = "INSERT INTO MV(MV_NUM,MV_NM,DIR_NM,MV_INT,DBTR_NM,SCR_TIME,RT_NUM,GNR_NUM)VALUES
-		 ('3','$_POST[mv_nm]','$_POST[dir_nm]','$_POST[mv_int]','$_POST[dbtr_nm]',
+    	$query1 = "INSERT INTO MV(MV_NUM,MV_NM,DIR_NM,MV_INT,DBTR_NM,SCR_TIME,RT_NUM,GNR_NUM)VALUES
+		 (MOVIE_SEQ.NEXTVAL,'$_POST[mv_nm]','$_POST[dir_nm]','$_POST[mv_int]','$_POST[dbtr_nm]',
 		  '$_POST[scr_time]','$rt_num','$gnr_num')";
-    	$stmt = oci_parse($conn,$query);
+    	$stmt1 = oci_parse($conn,$query1);
+	$success1 = oci_execute($stmt1, OCI_DEFAULT);
+        
+	$query2 = "INSERT ALL
+		   INTO ATR(MV_NUM,ATR_NM) VALUES (MOVIE_SEQ.CURRVAL,'$_POST[atr_nm1]')
+		   INTO ATR(MV_NUM,ATR_NM) VALUES (MOVIE_SEQ.CURRVAL,'$_POST[atr_nm2]')
+		   INTO ATR(MV_NUM,ATR_NM) VALUES (MOVIE_SEQ.CURRVAL,'$_POST[atr_nm3]')
+		   SELECT * FROM DUAL";
+	$stmt2 = oci_parse($conn,$query2);
+	$success2 = oci_execute($stmt2, OCI_DEFAULT);
 
-    	// Execute statement
-    	$success = oci_execute($stmt, OCI_DEFAULT);
-    	if($success){
+    	if($success1&&$success2){
     		// Commit transaction
     		$committed = oci_commit($conn);
     		// Test whether commit was successful. If error occurred, return error message
@@ -44,7 +51,6 @@
 		}
 	}
     	else {
-		$err = oci_error($stmt);
 		echo("<script>alert('DB 입력에 실패하였습니다!'); location.replace('insert_movie.html');</script>");	
 	}
     }
