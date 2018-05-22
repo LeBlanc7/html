@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,12 +37,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/login/login.html">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login/member.html">Member</a>
-            </li>
+            <?php
+	    	      if(!isset($_SESSION['user_id'])){
+	    		      echo "<li class='nav-item'>";
+              	echo "<a class='nav-link' href='/login/login.html'>Login</a>";
+            		echo "</li><li class='nav-item'>";
+              	echo "<a class='nav-link' href='/login/member.html'>Member</a></li>";
+              }
+              else{
+                $user_name = $_SESSION['user_name'];
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='/login/member_info.html'>";
+                echo "$user_name";
+                echo "님</a>";
+                echo "</li><li class='nav-item'>";
+                echo "<a class='nav-link' href='/login/logout.php'>Logout</a></li>";
+              }
+             ?>
             <li class="nav-item">
               <a class="nav-link" href="/admin/admin.html">Admin</a>
             </li>
