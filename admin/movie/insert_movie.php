@@ -1,4 +1,6 @@
 <?php
+   // 새로운 영화 정보를 입력받아서 영화테이블(MV)에 삽입하는 쿼리를 수행하는 php
+
    include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
    // Parse SQL
     $confirm1 = "SELECT * FROM MV WHERE MV_NM like '%$_POST[mv_nm]%'";
@@ -23,21 +25,13 @@
     	$row3 = oci_fetch_assoc($result3);
     	$gnr_num = $row3['GNR_NUM'];
 
-    	$query1 = "INSERT INTO MV(MV_NUM,MV_NM,DIR_NM,MV_INT,DBTR_NM,SCR_TIME,RT_NUM,GNR_NUM)VALUES
-		 (MOVIE_SEQ.NEXTVAL,'$_POST[mv_nm]','$_POST[dir_nm]','$_POST[mv_int]','$_POST[dbtr_nm]',
-		  '$_POST[scr_time]','$rt_num','$gnr_num')";
-    	$stmt1 = oci_parse($conn,$query1);
-	$success1 = oci_execute($stmt1, OCI_DEFAULT);
-        
-	$query2 = "INSERT ALL
-		   INTO ATR(MV_NUM,ATR_NM) VALUES (MOVIE_SEQ.CURRVAL,'$_POST[atr_nm1]')
-		   INTO ATR(MV_NUM,ATR_NM) VALUES (MOVIE_SEQ.CURRVAL,'$_POST[atr_nm2]')
-		   INTO ATR(MV_NUM,ATR_NM) VALUES (MOVIE_SEQ.CURRVAL,'$_POST[atr_nm3]')
-		   SELECT * FROM DUAL";
-	$stmt2 = oci_parse($conn,$query2);
-	$success2 = oci_execute($stmt2, OCI_DEFAULT);
+	// INSERT INTO MV
+    	$query = "INSERT INTO MV(MV_NUM,MV_NM,DIR_NM,MV_INT,DBTR_NM,ATR_NM,IMG_LNK,SCR_TIME,RT_NUM,GNR_NUM)VALUES
+		 (MOVIE_SEQ.NEXTVAL,'$_POST[mv_nm]','$_POST[dir_nm]','$_POST[mv_int]','$_POST[dbtr_nm]','$_POST[atr_nm]','$_POST[img_lnk]','$_POST[scr_time]','$rt_num','$gnr_num')";
+    	$stmt = oci_parse($conn,$query);
+	$success = oci_execute($stmt, OCI_DEFAULT);
 
-    	if($success1&&$success2){
+    	if($success){
     		// Commit transaction
     		$committed = oci_commit($conn);
     		// Test whether commit was successful. If error occurred, return error message

@@ -18,8 +18,12 @@ function validcheck(){
     alert("배급사를 입력해주세요");
     return false;
   }
-  else if(form.atr_nm1.value==""&&form.atr_nm2.value==""&&form.atr_nm3.value==""){
-    alert("배우를 1명 이상 입력해주세요");
+  else if(form.atr_nm.value==""){
+    alert("배우를 입력해주세요");
+    return false;
+  }
+  else if(form.img_lnk.value==""){
+    alert("이미지 링크를 입력해주세요");
     return false;
   }
   else if(form.scr_time.value==""){
