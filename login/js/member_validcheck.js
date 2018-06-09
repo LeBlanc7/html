@@ -3,7 +3,7 @@ function validcheck(){
   form = document.insertform;
 
   if(form.id.value==""){
-    alert("I D 를 입력해주세요");
+    alert("아이디를 입력해주세요");
     return false;
   }
   else if(form.pw.value==""){
@@ -15,11 +15,11 @@ function validcheck(){
     return false;
   }
   else if(form.ph_num.value==""){
-    alert("연락처를 입력해주세요");
+    alert("전화번호를 입력해주세요");
     return false;
   }
-  else if(form.rrnum1.value==""||form.rrnum2.value==""){
-    alert("주민등록번호를 입력해주세요");
+  else if(form.btdy.value==""){
+    alert("생년월일을 입력해주세요");
     return false;
   }
   else{

@@ -103,7 +103,7 @@
                         <div class='login_template'>
                             <div class='login'>
                                 <div class='login_title'>
-                                    <span>Fill out the form below</span>
+                                    <span>회원가입 정보를 입력하세요!</span>
                                 </div>
                                 <div class='login_fields'>
 					<form name="insertform" action="insert_member.php" method="post" onsubmit='return validcheck()'>
@@ -111,7 +111,7 @@
                                         <div class='icon'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
                                         </div>
-                                        <input placeholder='ID' name='id' type='text' id='login_fields_username'>
+                                        <input placeholder='아이디' name='id' type='text' id='login_fields_username'>
 					<div class='validation'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                                         </div>
@@ -122,7 +122,7 @@
                                         <div class='icon'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
                                         </div>
-                                        <input placeholder='Password' name='pw' type='password' id='login_fields_passname'>
+                                        <input placeholder='비밀번호' name='pw' type='password' id='login_fields_passname'>
                                         <div class='validation'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                                         </div>
@@ -132,7 +132,7 @@
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
                                         </div>
 
-                                        <input placeholder='Name' name='mem_nm' type='text' id='login_fields_name'>
+                                        <input placeholder='이름' name='mem_nm' type='text' id='login_fields_name'>
                                         <div class='validation'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                                         </div>
@@ -142,22 +142,18 @@
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
                                         </div>
 
-                                        <input placeholder='Phone' name='ph_num' type='text' id='login_fields_phonenum'>
+                                        <input placeholder='전화번호' name='ph_num' type='text' id='login_fields_phonenum'>
                                         <div class='validation'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                                         </div>
                                     </div>
-				    <div class='login_fields__rrnum' style="display: -webkit-inline-box;">
+				    <div class='login_fields__btdy'>
 					<div class='icon'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
                                         </div>
-					<div class='rrnum1' style="width:50%">
-
-                                        <input placeholder='X X X X X X' name='rrnum1' type='text' id='login_fields_rrnum1' style="padding-right:10px;">
-					</div>
-					<div class='rrnum2' style="width:50%">
-
-                                        <input placeholder='- X X X X X X X' name='rrnum2' type='password' id='login_fields_rrnum2' style="padding-left:0px; padding-right:10px;">      
+					
+                                        <input placeholder='생년월일' name='btdy' type='text' id='login_fields_btdy'>
+					    
 					<div class='validation'>
                                             <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
                                         </div>
@@ -167,7 +163,7 @@
                                     </div>
 
                                     <div class='login_fields__submit'>
-                                        <input type='submit' value='Join' onclick='validcheck();'>
+                                        <input type='submit' value='회원가입하기' onclick='validcheck();'>
                                     </div>
 					</form>
                                 </div>

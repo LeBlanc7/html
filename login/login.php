@@ -1,11 +1,13 @@
 <?php
+    // 로그인 정보를 입력받아서 DB의 회원테이블(CTMR)에 있는 정보인지를 확인하는 쿼리를 수행하는 php
+
     include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
     // Parse SQL
     $user_id = $_POST['id'];
     $user_pw = $_POST['pw'];
 
-    $confirm1 = "SELECT * FROM MEM WHERE ID='$_POST[id]' AND PW ='$_POST[pw]'";
-    $result = oci_parse($conn,$confirm1);
+    $confirm = "SELECT * FROM CTMR WHERE CTMR_ID='$_POST[id]' AND CTMR_PW ='$_POST[pw]'";
+    $result = oci_parse($conn,$confirm);
     oci_execute($result);
     $row = oci_fetch_assoc($result);
 
@@ -14,7 +16,7 @@
         echo ("<script>alert('등록되지 않은 ID이거나 비밀번호가 틀렸습니다.'); location.replace('login.html');</script>");
     }
     else{
-	$user_name = $row['MEM_NM'];	
+	$user_name = $row['CTMR_NM'];	
 
 	session_start();
 	$_SESSION['user_id'] = $user_id;
