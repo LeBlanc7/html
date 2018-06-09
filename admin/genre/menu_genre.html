@@ -39,24 +39,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <?php
-	    	      if(!isset($_SESSION['user_id'])){
-	    		      echo "<li class='nav-item'>";
-              	echo "<a class='nav-link' href='/login/login.html'>Login</a>";
-            		echo "</li><li class='nav-item'>";
-              	echo "<a class='nav-link' href='/login/member.html'>Member</a></li>";
-              }
-              else{
-                $user_name = $_SESSION['user_name'];
-                echo "<li class='nav-item'>";
-                echo "<a class='nav-link' href='/login/member_info.html?id=".$user_name."'>";
-                echo "$user_name";
-                echo "님</a>";
-                echo "</li><li class='nav-item'>";
-                echo "<a class='nav-link' href='/login/logout.php'>Logout</a></li>";
-              }
-             ?>
+	    	if(!isset($_SESSION['user_id'])){
+			echo "<li class='nav-item'>";
+			echo "<a class='nav-link' href='/login/login.html'>로그인</a>";
+			echo "</li><li class='nav-item'>";
+			echo "<a class='nav-link' href='/login/member.html'>회원가입</a></li>";
+		}
+		else{
+			$user_name = $_SESSION['user_name'];
+			echo "<li class='nav-item'>";
+			echo "<a class='nav-link' href='/login/member_info.html?id=".$user_name."'>회원정보</a>";
+			echo "</li><li class='nav-item'>";
+			echo "<a class='nav-link' href='/login/logout.php'>로그아웃</a></li>";
+		}
+	    ?>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/admin.html">Admin</a>
+              <a class="nav-link" href="/admin/admin.html">관리자</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/QnA/QnA.html">QnA</a>
