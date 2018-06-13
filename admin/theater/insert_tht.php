@@ -41,37 +41,53 @@
 		for($i=1;$i<=240;$i++)
 		{	
 			if($i <= 20){
-				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','A','$i')";
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','A',$i)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);	
 			}else if(20< $i && $i <= 40){
-				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','B','$i%20')";
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','B',$i-20)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);
 			}else if(40< $i && $i <= 60){
-				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','B','$i%40')";
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','C',$i-40)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);
-			}else if($i/20 == 3){
-
-                        }else if($i/20 == 4){
-
-                        }else if($i/20 == 5){
-
-                        }else if($i/20 == 6){
-
-                        }else if($i/20 == 7){
-
-                        }else if($i/20 == 8){
-
-                        }else if($i/20 == 9){
-
-                        }else if($i/20 == 10){
-
-                        }else if($i/20 == 11){
-
-                        }else{
-
+			}else if(60< $i && $i <= 80){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','D',$i-60)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else if(80< $i && $i <= 100){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','E',$i-80)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else if(100< $i && $i <= 120){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','F',$i-100)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else if(120< $i && $i <= 140){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','G',$i-120)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else if(140< $i && $i <= 160){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','H',$i-140)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}}else if(160< $i && $i <= 180){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','I',$i-160)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}}else if(180< $i && $i <= 200){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','J',$i-180)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}}else if(200< $i && $i <= 220){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','K',$i-200)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else{
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','L',$i-220)";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
 			}
 			if($success){
                 		// Commit transaction
