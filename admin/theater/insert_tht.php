@@ -1,7 +1,7 @@
 <?php
    include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
    // Parse SQL
-    $confirm = "SELECT * FROM THT WHERE THT_NM='$_POST[tht_nm]'";
+    $confirm = "SELECT * FROM LOC,THT WHERE LOC_NM='$_POS[loc]' AND THT_NM='$_POST[tht_nm]' AND LOC.LOC_NUM=THT.LOC_NUM";
     $result = oci_parse($conn,$confirm);
     oci_execute($result);
     if(oci_fetch_assoc($result))
@@ -72,15 +72,15 @@
 				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','H',$i-140)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);
-			}}else if(160< $i && $i <= 180){
+			}else if(160< $i && $i <= 180){
 				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','I',$i-160)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);
-			}}else if(180< $i && $i <= 200){
+			}else if(180< $i && $i <= 200){
 				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','J',$i-180)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);
-			}}else if(200< $i && $i <= 220){
+			}else if(200< $i && $i <= 220){
 				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','K',$i-200)";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);
@@ -100,6 +100,33 @@
                 	}
 
 		}
+
+		$query = "DROP SEQUENCE SEAT_SEQ";
+		$stmt = oci_parse($conn,$query);
+                $success = oci_execute($stmt,OCI_DEFAULT);
+		if($success){
+                                // Commit transaction
+                                $committed = oci_commit($conn);
+                                 // Test whether commit was successful. If error occurred, return error message
+                                if (!$committed) {
+                                        $error = oci_error($conn);
+                                        echo 'Commit failed. Oracle reports: ' . $error['message'];
+                                }
+                        }		
+		$query = "CREATE SEQUENCE SEAT_SEQ START WITH 1 INCREMENT BY 1 NOMAXVALUE MINVALUE 1";
+                $stmt = oci_parse($conn,$query);
+                $success = oci_execute($stmt,OCI_DEFAULT);
+                if($success){
+                                // Commit transaction
+                                $committed = oci_commit($conn);
+                                 // Test whether commit was successful. If error occurred, return error message
+                                if (!$committed) {
+                                        $error = oci_error($conn);
+                                        echo 'Commit failed. Oracle reports: ' . $error['message'];
+                                }
+                        }
+
+
 
 		echo("<script>alert('240!'); location.replace('insert_tht.html');</script>");	
 	}
