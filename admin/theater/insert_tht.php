@@ -38,17 +38,21 @@
 			}
 		}
 
-		for($i=0;$i<240;$i++)
+		for($i=1;$i<=240;$i++)
 		{	
-			if($i < 20){
+			if($i <= 20){
 				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','A','$i')";
                	 		$stmt = oci_parse($conn,$query);
                 		$success = oci_execute($stmt,OCI_DEFAULT);	
-			}else if($i/20 == 1){
-
-			}else if($i/20 == 2){
-
-                        }else if($i/20 == 3){
+			}else if(20< $i && $i <= 40){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','B','$i%20')";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else if(40< $i && $i <= 60){
+				$query = "INSERT INTO SEAT(SEAT_NUM,THT_NUM,LOC_NUM,SEAT_ROW,SEAT_COL) VALUES (SEAT_SEQ.NEXTVAL,'$tht_num','$loc_num','B','$i%40')";
+               	 		$stmt = oci_parse($conn,$query);
+                		$success = oci_execute($stmt,OCI_DEFAULT);
+			}else if($i/20 == 3){
 
                         }else if($i/20 == 4){
 
