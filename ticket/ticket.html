@@ -95,6 +95,45 @@
                       })
                 });
 
+		$(document).on("click",".date_button",function(){
+                //Selected value
+                var date_num = $(this).val();
+                var mv_num = $('#hide_mv_button').val();
+		var loc_num = $('#hide_loc_button').val();   
+                        
+		//Ajax for calling php function            
+                var hide_date_num = "<button type='button' id='hide_date_button' value='"
+                                + date_num + "' style='display:none' ></button>";                 
+                
+                
+                $.ajax({
+                        type : 'POST',
+                        url : '/ticket/get_time_list.php',
+                        datatype : "json",
+                        data : { date_num : date_num, loc_num : loc_num, mv_num : mv_num },
+                        success : function(data) {
+                                alert(data);
+				 /*  
+                                var result = JSON.parse(data);
+                                var input = "<ul style='list-style:none'>";
+                        
+                                for(var i=0;i<result.length;i++){
+                                        var day = result[i].sch_day.toString();
+                                        
+                                        var day1 = day.substr(4,2);
+                                        var day2 = day.substr(6,2); 
+                                        input = input + "<li><button type='button' class='date_button' value='"
+                                                + result[i].sch_day + "'>"
+                                                + day1+ "월" + day2 + "일</button></li>"; 
+                                }
+                                input = input + "</ul>";
+                                
+                                $("#date").html(input);
+                                $(".hide_date_num").html(hide_date_num);
+                                      */       
+                               }       
+                      })
+                });
 	});
     </script>
 	<style>
@@ -192,27 +231,31 @@
         <div class="ticket">
 		<div class="wrap1">
 			<div class="movie">
-			<h1 style="text-align:center;">영화</h1>
-			<br>
-			<?php
-				include './get_movie_list.php';
-			?>
+				<h1 style="text-align:center;">영화</h1>
+				<br>
+				<?php
+					include './get_movie_list.php';
+				?>
 			</div>
 			<div class="location">
-			<h1 style="text-align:center;">지점</h1>
-			<br>
-			<div id = "location">
-			</div>
+				<h1 style="text-align:center;">지점</h1>
+				<br>
+				<div id = "location">
+				</div>
 			</div>
 			<div class="date">
-			<h1 style="text-align:center;">날짜</h1>
-			<br>
-			<div id="date">
-			</div>
+				<h1 style="text-align:center;">날짜</h1>
+				<br>
+				<div id="date">
+				</div>
 			</div>
 			<div class="time">
+				<h1 style="text-align:center;">시간</h1>
+                        	<br>
+				<div id="time">
+				</div>
 			</div>
-			</div>
+		</div>
 		<div class="wrap2">
 			<div class="next">
 			</div>
@@ -227,6 +270,8 @@
 		<div class="hide_mv_num">
 		</div>
 		<div class="hide_loc_num">
+		</div>
+		<div class="hide_date_num">
 		</div>		
 	</div>
 
