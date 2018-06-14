@@ -73,13 +73,13 @@
                         datatype : "json",
                         data : { loc_num : loc_num, mv_num : mv_num },
                         success : function(data) {
-                                alert(data);    
+                                   
                                 var result = JSON.parse(data);
                                 var input = "<ul style='list-style:none'>";
                         
                                 for(var i=0;i<result.length;i++){
 					var day = result[i].sch_day.toString();
-					alert(day);
+					
 					var day1 = day.substr(4,2);
 					var day2 = day.substr(6,2); 
                                         input = input + "<li><button type='button' class='date_button' value='"

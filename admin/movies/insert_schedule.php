@@ -19,13 +19,13 @@
 	$row = oci_fetch_assoc($result);
 	$tht_num = $row['THT_NUM'];	
 
-    	$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' MV_NUM ='$mv_num' AND SCH_DAY > '$_POST[sch_day]'";
+    	$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' AND MV_NUM ='$mv_num' AND SCH_DAY > '$_POST[sch_day]'";
     	$result = oci_parse($conn,$confirm);
     	oci_execute($result);
 	$row = oci_fetch_assoc($result);
 	$valid1 = $row['COUNT'] ;
 	
-	$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' MV_NUM ='$mv_num' AND SCH_DAY = '$_POST[sch_day]' AND SCH_STT_TIME >= '$_POST[sch_stt_time]'";
+	$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' AND MV_NUM ='$mv_num' AND SCH_DAY = '$_POST[sch_day]' AND SCR_STT_TIME > '$_POST[scr_stt_time]'";
         $result = oci_parse($conn,$confirm);
         oci_execute($result);
         $row = oci_fetch_assoc($result);
@@ -36,13 +36,13 @@
         	echo ("<script>alert('해당 영화를 그 상영 기간에 등록할 수 없습니다.'); location.replace('insert_schedule.html');</script>");
     	}
     	else{
-		$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' MV_NUM ='$mv_num' AND SCH_DAY < '$_POST[sch_day]'";
+		$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' AND  MV_NUM ='$mv_num' AND SCH_DAY < '$_POST[sch_day]'";
         	$result = oci_parse($conn,$confirm);
         	oci_execute($result);
         	$row = oci_fetch_assoc($result);
         	$scr_tms = $row['COUNT'] ;
 	
-		$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' MV_NUM ='$mv_num' AND SCH_DAY = '$_POST[sch_day]' AND SCH_STT_TIME <= '$_POST[sch_stt_time]'";
+		$confirm = "SELECT COUNT(*) AS COUNT FROM SCR_SCH WHERE LOC_NUM='$loc_num' AND MV_NUM ='$mv_num' AND SCH_DAY = '$_POST[sch_day]' AND SCR_STT_TIME <= '$_POST[scr_stt_time]'";
         	$result = oci_parse($conn,$confirm);
         	oci_execute($result);
         	$row = oci_fetch_assoc($result);
