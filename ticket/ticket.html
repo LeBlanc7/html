@@ -31,18 +31,17 @@
 		$('.mv_button').click(function(){
 		//Selected value
 		var mv_num = $(this).val();
-		             
+		            
                 //Ajax for calling php function            
-		var hide_mv_nm = "<button type='button' id='hide_mv_button' value'"
-				+ mv_num + "' style='display:none' ></button>"; 		
+		var hide_mv_num = "<button type='button' id='hide_mv_button' value='"
+				+mv_num+ "' style='display:none'></button>"; 		
 
                 $.ajax({
                         type : 'POST',
                         url : '/ticket/get_loc_list.php',
                         datatype : "json",
                         data : { mv_num : mv_num },
-                        success : function(data) {
-                		alert(data);	
+                        success : function(data) {	
                                 var result = JSON.parse(data);
                                 var input = "<ul style='list-style:none'>";
                         
@@ -51,17 +50,55 @@
 						+ result[i].loc_num + "'>"
 						+ result[i].loc_nm + "</button></li>"; 
                                 }
+                                input = input + "</ul>";				
+                             
+                                $("#location").html(input);
+				$(".hide_mv_num").html(hide_mv_num);                                              
+         	               }       
+  	              })
+            	});
+		$(document).on("click",".loc_button",function(){
+                //Selected value
+                var loc_num = $(this).val();
+                var mv_num = $('#hide_mv_button').val();   
+		          
+                //Ajax for calling php function            
+                var hide_loc_num = "<button type='button' id='hide_loc_button' value='"
+                                + loc_num + "' style='display:none' ></button>";                 
+		
+		
+                $.ajax({
+                        type : 'POST',
+                        url : '/ticket/get_date_list.php',
+                        datatype : "json",
+                        data : { loc_num : loc_num, mv_num : mv_num },
+                        success : function(data) {
+                                alert(data);    
+                                var result = JSON.parse(data);
+                                var input = "<ul style='list-style:none'>";
+                        
+                                for(var i=0;i<result.length;i++){
+					var day = result[i].sch_day.toString();
+					alert(day);
+					var day1 = day.substr(4,2);
+					var day2 = day.substr(6,2); 
+                                        input = input + "<li><button type='button' class='date_button' value='"
+                                                + result[i].sch_day + "'>"
+                                                + day1+ "월" + day2 + "일</button></li>"; 
+                                }
                                 input = input + "</ul>";
                                 
-                                $("#location").html(input);
-				$(".hide_mv_nm").html(hide_mv_nm);                                               
-                        }       
-                })
-            });
+                                $("#date").html(input);
+                                $(".hide_loc_num").html(hide_loc_num);
+                                             
+                               }       
+                      })
+                });
+
 	});
     </script>
 	<style>
-		.mv_button, .loc_button {
+		.mv_button, .loc_button , .date_button{
 			margin : 3px;
 		}
 		.movie {
@@ -187,7 +224,9 @@
     <hr>
 	
 	<div class ="hide">
-		<div class="hide_mv_nm">
+		<div class="hide_mv_num">
+		</div>
+		<div class="hide_loc_num">
 		</div>		
 	</div>
 
