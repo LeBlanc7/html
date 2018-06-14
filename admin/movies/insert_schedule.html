@@ -73,10 +73,8 @@
 			}	
 		})
             });
-		$('#exam').click(function(){
+		$('#valid').click(function(){
 		//Selected value
-		alert("hi");
-
 		var loc	= $('#loc_dropdown').val();
 		var tht = $('#tht_dropdown').val();
                 var sch_day = $('#sch_day').val();
@@ -90,17 +88,17 @@
                         datatype : "json",
                         data : { loc : loc, tht_nm : tht, sch_day : sch_day },
                         success : function(data) {
-                                alert("OK");
+                		alert(data);
                                 var result = JSON.parse(data);
-                                //var input = "<label size> 상영 시간 : </label><select name='scr_stt_time'><option value='' selected>--선택--</option>";
+                                var input = "<label size> 상영 시간 : </label><select id='scr_dropdown' name='scr_stt_time'><option value='' selected>--선택--</option>";
                         
                                 for(var i=0;i<result.length;i++){
-                                     alert(result[i].time);
-				     // input = input + "<option value='"+result[i].time+"'>"+result[i].time+"</option>"; 
+				     var temp = result[i].time / 10000;
+				     input = input + "<option value='"+result[i].time+"'>"+temp+"시</option>"; 
                                 }
-                                //input = input + "</select>";
+                                input = input + "</select>";
                                 
-                                //$("#get_time").html(input);                                               
+                                $("#get_time").html(input);                                               
                         }       
                 })
             });
@@ -210,10 +208,10 @@
 		<label size> 상영관 이름 : </label><select id="tht_dropdown" name="tht_nm"><option value='' selected>--선택--</option>
 		</select></div>
 		<label size>날 짜 :</label><input type="text" id="sch_day" name="sch_day" OnClick="Calendar(this, 'down','no');">
-		<div id="calendar"></div> <button id="exam" type="button">상영시간 확인하기</button>
+		<div id="calendar"></div> <button id="valid" type="button">상영가능시간 확인하기</button>
 		<div id="get_time" style="display:contents">
-		<label size> 상영 시간 : </label><select name="scr_stt_time"><option value='' selected>--선택--</option>
-                </select><div>
+		<label size> 상영 시간 : </label><select id="scr_dropdown" name="scr_stt_time"><option value='' selected>--선택--</option>
+                </select></div>
 		
            </div>
             <input class="button" id="button_submit" type="submit" value="상영일정 추가하기" onclick="validcheck();">
