@@ -28,7 +28,7 @@
     .form_insert { 
       background-color: #FAFAFA;
       border: 1 solid #000000;
-      width: 75%;
+      width: 100%;
       font-size: 20px;
       margin-bottom: 20px;
       padding: 15px;
@@ -94,7 +94,8 @@
                         
                                 for(var i=0;i<result.length;i++){
 				     var temp = result[i].time / 10000;
-				     input = input + "<option value='"+result[i].time+"'>"+temp+"시</option>"; 
+				     if(temp == 1) { input = input + "<option value='"+result[i].time+"'>0"+temp+"시</option>"; }
+				     else {input = input + "<option value='"+result[i].time+"'>"+temp+"시</option>"; }
                                 }
                                 input = input + "</select>";
                                 
@@ -212,7 +213,11 @@
 		<div id="get_time" style="display:contents">
 		<label size> 상영 시간 : </label><select id="scr_dropdown" name="scr_stt_time"><option value='' selected>--선택--</option>
                 </select></div>
-		
+		<label size> 영 화 : </label><select id="movie_dropdown" name="mv_nm"><option value='' selected>--선택--</option>
+                <?php
+                        include './insert_getmovie.php';
+                ?>
+                </select>
            </div>
             <input class="button" id="button_submit" type="submit" value="상영일정 추가하기" onclick="validcheck();">
             </form>
