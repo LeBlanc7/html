@@ -137,18 +137,18 @@ ession_start();
             <form name="insertform" method="post" action="insert_schedule.php" onsubmit='return validcheck()'>
 		<label size> 지 점 : </label><select name="loc"><option value='' selected>--선택--</option>
 		<?php
-			include './insert_tht_getloc.php';
+			include './insert_getloc.php';
 		?>
 		</select>
-              <label size>상영관 이름 : </label><input type="text" name="tht_nm" class="box"><br>
-		<label size> 좌석수 : </label><select name="seatN">
-		<option value='' selected>--선택--</option>
-		<option value='240'>240좌석</option>
-		<option value='300'>300좌석</option>
+		<label size> 상영관 이름 : </label><select name="tht_nm"><option value='' selected>--선택--</option>
+		<?php
+			include './insert_gettht.php';
+		?>
 		</select>
+		<input type="text" name="date" OnClick="Calendar(this, 'down','no');">
 		
             </div>
-            <input class="button" id="button_submit" type="submit" value="상영관 추가하기" onclick="validcheck();">
+            <input class="button" id="button_submit" type="submit" value="상영일정 추가하기" onclick="validcheck();">
             </form>
         </div>
       </div>
