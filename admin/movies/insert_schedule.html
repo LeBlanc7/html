@@ -44,7 +44,29 @@
       background: rgba(255,255,255,.5);
     }
     </style>
-  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+            $('#loc_dropdown').change(function(){
+                //Selected value
+                var inputValue = $(this).val();
+               
+		alert(inputValue); 
+                //Ajax for calling php function            
+ 
+		$.ajax({
+			type : 'POST',
+			url : '/admin/movies/insert_gettht.php',
+			datatype : "text",
+			data : { loc : inputValue },
+			success : function(data) {
+				alert("OK");
+			}	
+		})
+            });
+        });
+        </script>
+   </head>
 
   <body>
 
@@ -135,19 +157,23 @@
               </ul>
             </div>
 	    <div class="form_insert">
-            <form name="insertform" method="post" action="insert_schedule.php" onsubmit='return validcheck()'>
-		<label size> 지 점 : </label><select name="loc"><option value='' selected>--선택--</option>
+            <form name="insertform" method="post" action="insert_schedule.php" style="display:inline-grid; "onsubmit='return validcheck()'>
+		<label size> 지 점 : </label><select id="loc_dropdown" name="loc"><option value='' selected>--선택--</option>
 		<?php
 			include './insert_getloc.php';
 		?>
 		</select>
 		<label size> 상영관 이름 : </label><select name="tht_nm"><option value='' selected>--선택--</option>
-		<?php
-			include './insert_gettht.php';
-		?>
+		<?php include './insert_gettht.php'; ?>
+		<div id="tht_nm"></div>
 		</select>
-		<label size>날 짜 :</label><input type="text" name="date" OnClick="Calendar(this, 'down','no');" style="width:30%;">
+		<label size>날 짜 :</label><input type="text" name="sch_day" OnClick="Calendar(this, 'down','no');">
 		<div id="calendar"></div>
+		<label size> 상영 시간 : </label><select name="scr_stt_time"><option value='' selected>--선택--</option>
+                <?php
+                        include './insert_gettime.php';
+                ?>
+                </select>
 		
             </div>
             <input class="button" id="button_submit" type="submit" value="상영일정 추가하기" onclick="validcheck();">
