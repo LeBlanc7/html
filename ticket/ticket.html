@@ -31,33 +31,37 @@
 		$('.mv_button').click(function(){
 		//Selected value
 		var mv_num = $(this).val();
-		
-		alert(mv_num);                
+		             
                 //Ajax for calling php function            
- 
+		var hide_mv_nm = "<button type='button' id='hide_mv_button' value'"
+				+ mv_num + "' style='display:none' ></button>"; 		
+
                 $.ajax({
                         type : 'POST',
                         url : '/ticket/get_loc_list.php',
                         datatype : "json",
                         data : { mv_num : mv_num },
                         success : function(data) {
-                		
+                		alert(data);	
                                 var result = JSON.parse(data);
                                 var input = "<ul style='list-style:none'>";
                         
                                 for(var i=0;i<result.length;i++){
-				     else {input = input + "<option value='"+result[i].time+"'>"+temp+"시</option>"; }
+					input = input + "<li><button type='button' class='loc_button' value='"
+						+ result[i].loc_num + "'>"
+						+ result[i].loc_nm + "</button></li>"; 
                                 }
                                 input = input + "</ul>";
                                 
-                                $("#location").html(input);                                               
+                                $("#location").html(input);
+				$(".hide_mv_nm").html(hide_mv_nm);                                               
                         }       
                 })
             });
 	});
     </script>
 	<style>
-		.mv_button {
+		.mv_button, .loc_button {
 			margin : 3px;
 		}
 		.movie {
@@ -117,7 +121,7 @@
         </div>
       </div>
     </nav>
-
+	
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('/img/home-bg.jpg'); height: 420px">
       <div class="overlay"></div>
@@ -159,10 +163,15 @@
 			</div>
 			<div class="location">
 			<h1 style="text-align:center;">지점</h1>
+			<br>
 			<div id = "location">
 			</div>
 			</div>
 			<div class="date">
+			<h1 style="text-align:center;">날짜</h1>
+			<br>
+			<div id="date">
+			</div>
 			</div>
 			<div class="time">
 			</div>
@@ -176,6 +185,11 @@
     </div>
 
     <hr>
+	
+	<div class ="hide">
+		<div class="hide_mv_nm">
+		</div>		
+	</div>
 
     <!-- Footer -->
     <footer>
