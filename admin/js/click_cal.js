@@ -1,13 +1,13 @@
-	var target;																	// È£ÃâÇÑ ObjectÀÇ ÀúÀå
+	var target;																	// í˜¸ì¶œí•œ Objectì˜ ì €ì¥
 	var stime;
 	var loc;
-	document.write("<div id=minical oncontextmenu='return false' ondragstart='return false' onselectstart='return false' style=\"background:buttonface; margin:5; padding:5;margin-top:2;border-top:1 solid buttonshadow;border-left: 1 solid buttonshadow;border-right: 1 solid buttonshadow;border-bottom:1 solid buttonshadow;width:160;display:none;position: absolute; z-index: 99\"></div>");
+	$("#calendar").html("<div id=minical oncontextmenu='return false' ondragstart='return false' onselectstart='return false' style=\"background:buttonface; margin:5; padding:5;margin-top:2;border-top:1 solid buttonshadow;border-left: 1 solid buttonshadow;border-right: 1 solid buttonshadow;border-bottom:1 solid buttonshadow;width:160;display:none;position: absolute; z-index: 99\"></div>");
 
 function Calendar(obj,pos,aaa) {														// jucke
 	var now = obj.value.split("-");
 	var x, y;
 	loc=aaa;
-	target = obj;																// Object ÀúÀå;
+	target = obj;																// Object ì €ì¥;
 
 	x = (document.layers) ? loc.pageX : event.clientX;
 	y = (document.layers) ? loc.pageY : event.clientY;
@@ -30,30 +30,30 @@ function Calendar(obj,pos,aaa) {														// jucke
 	minical.style.pixelLeft	= x+x_pos;
 	minical.style.display = (minical.style.display == "block") ? "none" : "block";
 
-	if (now.length == 3) {														// Á¤È®ÇÑÁö °Ë»ç
-		Show_cal(now[0],now[1],now[2]);											// ³Ñ¾î¿Â °ªÀ» ³â¿ùÀÏ·Î ºĞ¸®
+	if (now.length == 3) {														// ì •í™•í•œì§€ ê²€ì‚¬
+		Show_cal(now[0],now[1],now[2]);											// ë„˜ì–´ì˜¨ ê°’ì„ ë…„ì›”ì¼ë¡œ ë¶„ë¦¬
 	} else {
 		now = new Date();
-		Show_cal(now.getFullYear(), now.getMonth()+1, now.getDate());			// ÇöÀç ³â/¿ù/ÀÏÀ» ¼³Á¤ÇÏ¿© ³Ñ±è.
+		Show_cal(now.getFullYear(), now.getMonth()+1, now.getDate());			// í˜„ì¬ ë…„/ì›”/ì¼ì„ ì„¤ì •í•˜ì—¬ ë„˜ê¹€.
 	}
 }
 	
-function doOver() {																// ¸¶¿ì½º°¡ Ä®·»´ÙÀ§¿¡ ÀÖÀ¸¸é
+function doOver() {																// ë§ˆìš°ìŠ¤ê°€ ì¹¼ë Œë‹¤ìœ„ì— ìˆìœ¼ë©´
 	var el = window.event.srcElement;
 	cal_Day = el.title;
 
-	if (cal_Day.length > 7) {													// ³¯ÀÚ °ªÀÌ ÀÖÀ¸¸é.
+	if (cal_Day.length > 7) {													// ë‚ ì ê°’ì´ ìˆìœ¼ë©´.
 		el.style.borderTopColor = el.style.borderLeftColor = "buttonhighlight";
 		el.style.borderRightColor = el.style.borderBottomColor = "buttonshadow";
 	}
 	window.clearTimeout(stime);													// Clear
 }
 
-function doClick() {															// ³¯ÀÚ¸¦ ¼±ÅÃÇÏ¿´À» °æ¿ì
+function doClick() {															// ë‚ ìë¥¼ ì„ íƒí•˜ì˜€ì„ ê²½ìš°
 	cal_Day = window.event.srcElement.title;
-	window.event.srcElement.style.borderColor = "red";							// Å×µÎ¸® »öÀ» »¡°£»öÀ¸·Î
-	if (cal_Day.length > 7) {													// ³¯ÀÚ °ªÀÌÀÖÀ¸¸é
-		target.value=cal_Day													// °ª ¼³Á¤
+	window.event.srcElement.style.borderColor = "red";							// í…Œë‘ë¦¬ ìƒ‰ì„ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ
+	if (cal_Day.length > 7) {													// ë‚ ì ê°’ì´ìˆìœ¼ë©´
+		target.value=cal_Day													// ê°’ ì„¤ì •
 		if(loc != 'no'){
 			s_name=frm.s_name.value;
 			e_name=frm.e_name.value;
@@ -62,7 +62,7 @@ function doClick() {															// ³¯ÀÚ¸¦ ¼±ÅÃÇÏ¿´À» °æ¿ì
 			location="attendance.php?today="+cal_Day+"&s_name="+s_name+"&e_name="+e_name+"&id_order="+id_order+"&list_mode="+list_mode;
 		}
 	}
-	minical.style.display='none';												// È­¸é¿¡¼­ Áö¿ò
+	minical.style.display='none';												// í™”ë©´ì—ì„œ ì§€ì›€
 }
 
 function doOut() {
@@ -75,7 +75,7 @@ function doOut() {
 	//stime=window.setTimeout("minical.style.display='none';", 200);
 }
 
-function day2(d) {																// 2ÀÚ¸® ¼ıÀÚ·á º¯°æ
+function day2(d) {																// 2ìë¦¬ ìˆ«ìë£Œ ë³€ê²½
 	var str = new String();
 	
 	if (parseInt(d) < 10) {
@@ -88,17 +88,17 @@ function day2(d) {																// 2ÀÚ¸® ¼ıÀÚ·á º¯°æ
 
 function Show_cal(sYear, sMonth, sDay) {
 	var Months_day = new Array(0,31,28,31,30,31,30,31,31,30,31,30,31)
-	var Weekday_name = new Array("ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä");
+	var Weekday_name = new Array("ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† ");
 	var intThisYear = new Number(), intThisMonth = new Number(), intThisDay = new Number();
 	document.all.minical.innerHTML = "";
-	datToday = new Date();													// ÇöÀç ³¯ÀÚ ¼³Á¤
+	datToday = new Date();													// í˜„ì¬ ë‚ ì ì„¤ì •
 	
 	intThisYear = parseInt(sYear);
 	intThisMonth = parseInt(sMonth);
 	intThisDay = parseInt(sDay);
 	
-	if (intThisYear == 0) intThisYear = datToday.getFullYear();				// °ªÀÌ ¾øÀ» °æ¿ì
-	if (intThisMonth == 0) intThisMonth = parseInt(datToday.getMonth())+1;	// ¿ù °ªÀº ½ÇÁ¦°ª º¸´Ù -1 ÇÑ °ªÀÌ µÅµ¹·Á Áø´Ù.
+	if (intThisYear == 0) intThisYear = datToday.getFullYear();				// ê°’ì´ ì—†ì„ ê²½ìš°
+	if (intThisMonth == 0) intThisMonth = parseInt(datToday.getMonth())+1;	// ì›” ê°’ì€ ì‹¤ì œê°’ ë³´ë‹¤ -1 í•œ ê°’ì´ ë¼ëŒë ¤ ì§„ë‹¤.
 	if (intThisDay == 0) intThisDay = datToday.getDate();
 	
 	switch(intThisMonth) {
@@ -122,28 +122,28 @@ function Show_cal(sYear, sMonth, sDay) {
 				break;
 	}
 
-	NowThisYear = datToday.getFullYear();										// ÇöÀç ³â
-	NowThisMonth = datToday.getMonth()+1;										// ÇöÀç ¿ù
-	NowThisDay = datToday.getDate();											// ÇöÀç ÀÏ
+	NowThisYear = datToday.getFullYear();										// í˜„ì¬ ë…„
+	NowThisMonth = datToday.getMonth()+1;										// í˜„ì¬ ì›”
+	NowThisDay = datToday.getDate();											// í˜„ì¬ ì¼
 	
-	datFirstDay = new Date(intThisYear, intThisMonth-1, 1);						// ÇöÀç ´ŞÀÇ 1ÀÏ·Î ³¯ÀÚ °´Ã¼ »ı¼º(¿ùÀº 0ºÎÅÍ 11±îÁöÀÇ Á¤¼ö(1¿ùºÎÅÍ 12¿ù))
-	intFirstWeekday = datFirstDay.getDay();										// ÇöÀç ´Ş 1ÀÏÀÇ ¿äÀÏÀ» ±¸ÇÔ (0:ÀÏ¿äÀÏ, 1:¿ù¿äÀÏ)
+	datFirstDay = new Date(intThisYear, intThisMonth-1, 1);						// í˜„ì¬ ë‹¬ì˜ 1ì¼ë¡œ ë‚ ì ê°ì²´ ìƒì„±(ì›”ì€ 0ë¶€í„° 11ê¹Œì§€ì˜ ì •ìˆ˜(1ì›”ë¶€í„° 12ì›”))
+	intFirstWeekday = datFirstDay.getDay();										// í˜„ì¬ ë‹¬ 1ì¼ì˜ ìš”ì¼ì„ êµ¬í•¨ (0:ì¼ìš”ì¼, 1:ì›”ìš”ì¼)
 	
 	intSecondWeekday = intFirstWeekday;
 	intThirdWeekday = intFirstWeekday;
 	
-	datThisDay = new Date(intThisYear, intThisMonth, intThisDay);				// ³Ñ¾î¿Â °ªÀÇ ³¯ÀÚ »ı¼º
-	intThisWeekday = datThisDay.getDay();										// ³Ñ¾î¿Â ³¯ÀÚÀÇ ÁÖ ¿äÀÏ
+	datThisDay = new Date(intThisYear, intThisMonth, intThisDay);				// ë„˜ì–´ì˜¨ ê°’ì˜ ë‚ ì ìƒì„±
+	intThisWeekday = datThisDay.getDay();										// ë„˜ì–´ì˜¨ ë‚ ìì˜ ì£¼ ìš”ì¼
 
-	varThisWeekday = Weekday_name[intThisWeekday];								// ÇöÀç ¿äÀÏ ÀúÀå
+	varThisWeekday = Weekday_name[intThisWeekday];								// í˜„ì¬ ìš”ì¼ ì €ì¥
 	
-	intPrintDay = 1																// ´ŞÀÇ ½ÃÀÛ ÀÏÀÚ
+	intPrintDay = 1																// ë‹¬ì˜ ì‹œì‘ ì¼ì
 	secondPrintDay = 1
 	thirdPrintDay = 1
 	
 	Stop_Flag = 0
 	
-	if ((intThisYear % 4)==0) {													// 4³â¸¶´Ù 1¹øÀÌ¸é (»ç·Î³ª´©¾î ¶³¾îÁö¸é)
+	if ((intThisYear % 4)==0) {													// 4ë…„ë§ˆë‹¤ 1ë²ˆì´ë©´ (ì‚¬ë¡œë‚˜ëˆ„ì–´ ë–¨ì–´ì§€ë©´)
 		if ((intThisYear % 100) == 0) {
 			if ((intThisYear % 400) == 0) {
 				Months_day[2] = 29;
@@ -152,32 +152,32 @@ function Show_cal(sYear, sMonth, sDay) {
 			Months_day[2] = 29;
 		}
 	}
-	intLastDay = Months_day[intThisMonth];										// ¸¶Áö¸· ÀÏÀÚ ±¸ÇÔ
+	intLastDay = Months_day[intThisMonth];										// ë§ˆì§€ë§‰ ì¼ì êµ¬í•¨
 	Stop_flag = 0
 	
 	Cal_HTML = "<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0 ONMOUSEOVER=doOver(); ONMOUSEOUT=doOut(); STYLE='font-size:8pt;font-family:Tahoma;'>"
-			+ "<TR ALIGN=CENTER><TD COLSPAN=7 nowrap=nowrap ALIGN=CENTER><SPAN TITLE='ÀÌÀü´Ş' STYLE=cursor:hand; onClick='Show_cal("+intPrevYear+","+intPrevMonth+",1);'><FONT COLOR=Navy>¢¸</FONT></SPAN> "
-			+ "<B STYLE=color:red>"+get_Yearinfo(intThisYear,intThisMonth,intThisDay)+"³â"+get_Monthinfo(intThisYear,intThisMonth,intThisDay)+"¿ù</B>"
-			+ " <SPAN TITLE='´ÙÀ½´Ş' STYLE=cursor:hand; onClick='Show_cal("+intNextYear+","+intNextMonth+",1);'><FONT COLOR=Navy>¢º</FONT></SPAN></TD></TR>"
-			+ "<TR ALIGN=CENTER BGCOLOR=ThreedFace STYLE='color:White;font-weight:bold;'><TD>ÀÏ</TD><TD>¿ù</TD><TD>È­</TD><TD>¼ö</TD><TD>¸ñ</TD><TD>±İ</TD><TD>Åä</TD></TR>";
+			+ "<TR ALIGN=CENTER><TD COLSPAN=7 nowrap=nowrap ALIGN=CENTER><SPAN TITLE='ì´ì „ë‹¬' STYLE=cursor:hand; onClick='Show_cal("+intPrevYear+","+intPrevMonth+",1);'><FONT COLOR=Navy>â—€</FONT></SPAN> "
+			+ "<B STYLE=color:red>"+get_Yearinfo(intThisYear,intThisMonth,intThisDay)+"ë…„"+get_Monthinfo(intThisYear,intThisMonth,intThisDay)+"ì›”</B>"
+			+ " <SPAN TITLE='ë‹¤ìŒë‹¬' STYLE=cursor:hand; onClick='Show_cal("+intNextYear+","+intNextMonth+",1);'><FONT COLOR=Navy>â–¶</FONT></SPAN></TD></TR>"
+			+ "<TR ALIGN=CENTER BGCOLOR=ThreedFace STYLE='color:White;font-weight:bold;'><TD>ì¼</TD><TD>ì›”</TD><TD>í™”</TD><TD>ìˆ˜</TD><TD>ëª©</TD><TD>ê¸ˆ</TD><TD>í† </TD></TR>";
 			
-	for (intLoopWeek=1; intLoopWeek < 7; intLoopWeek++) {						// ÁÖ´ÜÀ§ ·çÇÁ ½ÃÀÛ, ÃÖ´ë 6ÁÖ
+	for (intLoopWeek=1; intLoopWeek < 7; intLoopWeek++) {						// ì£¼ë‹¨ìœ„ ë£¨í”„ ì‹œì‘, ìµœëŒ€ 6ì£¼
 		Cal_HTML += "<TR ALIGN=RIGHT BGCOLOR=WHITE>"
-		for (intLoopDay=1; intLoopDay <= 7; intLoopDay++) {						// ¿äÀÏ´ÜÀ§ ·çÇÁ ½ÃÀÛ, ÀÏ¿äÀÏ ºÎÅÍ
-			if (intThirdWeekday > 0) {											// Ã¹ÁÖ ½ÃÀÛÀÏÀÌ 1º¸´Ù Å©¸é
+		for (intLoopDay=1; intLoopDay <= 7; intLoopDay++) {						// ìš”ì¼ë‹¨ìœ„ ë£¨í”„ ì‹œì‘, ì¼ìš”ì¼ ë¶€í„°
+			if (intThirdWeekday > 0) {											// ì²«ì£¼ ì‹œì‘ì¼ì´ 1ë³´ë‹¤ í¬ë©´
 				Cal_HTML += "<TD onClick=doClick();>";
 				intThirdWeekday--;
 			} else {
-				if (thirdPrintDay > intLastDay) {								// ÀÔ·Â ³¯Â¦ ¿ù¸»º¸´Ù Å©´Ù¸é
+				if (thirdPrintDay > intLastDay) {								// ì…ë ¥ ë‚ ì§ ì›”ë§ë³´ë‹¤ í¬ë‹¤ë©´
 					Cal_HTML += "<TD onClick=doClick();>";
-				} else {														// ÀÔ·Â³¯Â¥°¡ ÇöÀç¿ù¿¡ ÇØ´ç µÇ¸é
-					Cal_HTML += "<TD onClick=doClick(); title="+intThisYear+"-"+day2(intThisMonth).toString()+"-"+day2(thirdPrintDay).toString()+" STYLE=\"cursor:Hand;border:1px solid white;";
+				} else {														// ì…ë ¥ë‚ ì§œê°€ í˜„ì¬ì›”ì— í•´ë‹¹ ë˜ë©´
+					Cal_HTML += "<TD onClick=doClick(); title="+intThisYear+day2(intThisMonth).toString()+day2(thirdPrintDay).toString()+" STYLE=\"cursor:Hand;border:1px solid white;";
 					if (intThisYear == NowThisYear && intThisMonth==NowThisMonth && thirdPrintDay==intThisDay) {
 						Cal_HTML += "background-color:cyan;";
 					}
 					
 					switch(intLoopDay) {
-						case 1:													// ÀÏ¿äÀÏÀÌ¸é »¡°£ »öÀ¸·Î
+						case 1:													// ì¼ìš”ì¼ì´ë©´ ë¹¨ê°„ ìƒ‰ìœ¼ë¡œ
 							Cal_HTML += "color:red;"
 							break;
 						case 7:
@@ -193,7 +193,7 @@ function Show_cal(sYear, sMonth, sDay) {
 				}
 				thirdPrintDay++;
 				
-				if (thirdPrintDay > intLastDay) {								// ¸¸¾à ³¯Â¥ °ªÀÌ ¿ù¸» °ªº¸´Ù Å©¸é ·çÇÁ¹® Å»Ãâ
+				if (thirdPrintDay > intLastDay) {								// ë§Œì•½ ë‚ ì§œ ê°’ì´ ì›”ë§ ê°’ë³´ë‹¤ í¬ë©´ ë£¨í”„ë¬¸ íƒˆì¶œ
 					Stop_Flag = 1;
 				}
 			}
@@ -207,7 +207,7 @@ function Show_cal(sYear, sMonth, sDay) {
 	document.all.minical.innerHTML = Cal_HTML;
 }
 
-function get_Yearinfo(year,month,day) {											// ³â Á¤º¸¸¦ ÄŞº¸ ¹Ú½º·Î Ç¥½Ã
+function get_Yearinfo(year,month,day) {											// ë…„ ì •ë³´ë¥¼ ì½¤ë³´ ë°•ìŠ¤ë¡œ í‘œì‹œ
 	var min = parseInt(year) - 100;
 	var max = parseInt(year) + 10;
 	var i = new Number();
@@ -226,7 +226,7 @@ function get_Yearinfo(year,month,day) {											// ³â Á¤º¸¸¦ ÄŞº¸ ¹Ú½º·Î Ç¥½Ã
 }
 
 
-function get_Monthinfo(year,month,day) {										// ¿ù Á¤º¸¸¦ ÄŞº¸ ¹Ú½º·Î Ç¥½Ã
+function get_Monthinfo(year,month,day) {										// ì›” ì •ë³´ë¥¼ ì½¤ë³´ ë°•ìŠ¤ë¡œ í‘œì‹œ
 	var i = new Number();
 	var str = new String();
 	
