@@ -50,22 +50,32 @@
             $('#loc_dropdown').change(function(){
                 //Selected value
                 var inputValue = $(this).val();
-               
-		alert(inputValue); 
+                
                 //Ajax for calling php function            
  
 		$.ajax({
 			type : 'POST',
 			url : '/admin/movies/insert_gettht.php',
-			datatype : "text",
+			datatype : "json",
 			data : { loc : inputValue },
 			success : function(data) {
-				alert("OK");
+				
+				var result = JSON.parse(data);
+				var input = "<label size> 상영관 이름 : </label><select name='tht_nm'><option value='' selected>--선택--</option>";
+			
+				for(var i=0;i<result.length;i++){
+					input = input + "<option value='"+result[i].tht_nm+"'>"+result[i].tht_nm+"</option>"; 
+				}
+				input = input + "</select>";
+				
+				$("#tht_nm").html(input);						
 			}	
 		})
             });
         });
+
         </script>
+
    </head>
 
   <body>
@@ -163,10 +173,9 @@
 			include './insert_getloc.php';
 		?>
 		</select>
+		<div id="tht_nm">
 		<label size> 상영관 이름 : </label><select name="tht_nm"><option value='' selected>--선택--</option>
-		<?php include './insert_gettht.php'; ?>
-		<div id="tht_nm"></div>
-		</select>
+		</select></div>
 		<label size>날 짜 :</label><input type="text" name="sch_day" OnClick="Calendar(this, 'down','no');">
 		<div id="calendar"></div>
 		<label size> 상영 시간 : </label><select name="scr_stt_time"><option value='' selected>--선택--</option>
