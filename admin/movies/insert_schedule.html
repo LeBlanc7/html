@@ -25,7 +25,7 @@
     <link href="/css/clean-blog.min.css" rel="stylesheet">
     
     <style>
-    .form_insert{
+    .form_insert { 
       background-color: #FAFAFA;
       border: 1 solid #000000;
       width: 75%;
@@ -40,6 +40,7 @@
     #button_submit{
       height: 50px;
       width: 200px;
+      margin-top : 20px;
       margin-bottom :20px;
       background: rgba(255,255,255,.5);
     }
@@ -148,7 +149,7 @@
 
     <!-- Main Content -->
     <div class="container">
-      <div class="row">
+      <div class="row" style="display:contents;">
          <div class="col-lg-8 col-md-10 mx-auto">
             <div class="menu_change">
                <ul style = " padding-left: 0; display : inline-flex; list-style-type: none ">
@@ -173,20 +174,19 @@
 			include './insert_getloc.php';
 		?>
 		</select>
-		<div id="tht_nm">
+		<div id="tht_nm" style="display:contents">
 		<label size> 상영관 이름 : </label><select name="tht_nm"><option value='' selected>--선택--</option>
 		</select></div>
 		<label size>날 짜 :</label><input type="text" name="sch_day" OnClick="Calendar(this, 'down','no');">
 		<div id="calendar"></div>
+		<div id="get_time" style="display:contents">
 		<label size> 상영 시간 : </label><select name="scr_stt_time"><option value='' selected>--선택--</option>
-                <?php
-                        include './insert_gettime.php';
-                ?>
-                </select>
+                </select><div>
 		
-            </div>
+           </div>
             <input class="button" id="button_submit" type="submit" value="상영일정 추가하기" onclick="validcheck();">
             </form>
+		
         </div>
       </div>
     </div>
