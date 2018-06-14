@@ -24,6 +24,60 @@
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
     <link href="css/ticket.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+	$(document).ready(function(){
+		$('.mv_button').click(function(){
+		//Selected value
+		var mv_num = $(this).val();
+		
+		alert(mv_num);                
+                //Ajax for calling php function            
+ 
+                $.ajax({
+                        type : 'POST',
+                        url : '/ticket/get_loc_list.php',
+                        datatype : "json",
+                        data : { mv_num : mv_num },
+                        success : function(data) {
+                		
+                                var result = JSON.parse(data);
+                                var input = "<ul style='list-style:none'>";
+                        
+                                for(var i=0;i<result.length;i++){
+				     else {input = input + "<option value='"+result[i].time+"'>"+temp+"시</option>"; }
+                                }
+                                input = input + "</ul>";
+                                
+                                $("#location").html(input);                                               
+                        }       
+                })
+            });
+	});
+    </script>
+	<style>
+		.mv_button {
+			margin : 3px;
+		}
+		.movie {
+			margin : 10px;
+			float :left;
+		}
+		.location {
+			margin : 10px;
+			float : left;
+		}
+		.date {
+			margin : 10px;
+			float : left;
+		}
+		.time {
+			margin : 10px;
+			float :left;
+		}
+
+	</style>
   </head>
 
   <body>
@@ -94,8 +148,29 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-
+        <div class="ticket">
+		<div class="wrap1">
+			<div class="movie">
+			<h1 style="text-align:center;">영화</h1>
+			<br>
+			<?php
+				include './get_movie_list.php';
+			?>
+			</div>
+			<div class="location">
+			<h1 style="text-align:center;">지점</h1>
+			<div id = "location">
+			</div>
+			</div>
+			<div class="date">
+			</div>
+			<div class="time">
+			</div>
+			</div>
+		<div class="wrap2">
+			<div class="next">
+			</div>
+		</div>
         </div>
       </div>
     </div>
