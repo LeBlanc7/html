@@ -47,7 +47,7 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function(){	
             $('#loc_dropdown').change(function(){
                 //Selected value
                 var inputValue = $(this).val();
@@ -62,7 +62,7 @@
 			success : function(data) {
 				
 				var result = JSON.parse(data);
-				var input = "<label size> 상영관 이름 : </label><select name='tht_nm'><option value='' selected>--선택--</option>";
+				var input = "<label size> 상영관 이름 : </label><select id='tht_dropdown' name='tht_nm'><option value='' selected>--선택--</option>";
 			
 				for(var i=0;i<result.length;i++){
 					input = input + "<option value='"+result[i].tht_nm+"'>"+result[i].tht_nm+"</option>"; 
@@ -73,6 +73,38 @@
 			}	
 		})
             });
+		$('#exam').click(function(){
+		//Selected value
+		alert("hi");
+
+		var loc	= $('#loc_dropdown').val();
+		var tht = $('#tht_dropdown').val();
+                var sch_day = $('#sch_day').val();
+                
+		alert(loc+tht+sch_day);
+                //Ajax for calling php function            
+ 
+                $.ajax({
+                        type : 'POST',
+                        url : '/admin/movies/insert_getsch.php',
+                        datatype : "json",
+                        data : { loc : loc, tht_nm : tht, sch_day : sch_day },
+                        success : function(data) {
+                                alert("OK");
+                                var result = JSON.parse(data);
+                                //var input = "<label size> 상영 시간 : </label><select name='scr_stt_time'><option value='' selected>--선택--</option>";
+                        
+                                for(var i=0;i<result.length;i++){
+                                     alert(result[i].time);
+				     // input = input + "<option value='"+result[i].time+"'>"+result[i].time+"</option>"; 
+                                }
+                                //input = input + "</select>";
+                                
+                                //$("#get_time").html(input);                                               
+                        }       
+                })
+            });
+	
         });
 
         </script>
@@ -175,10 +207,10 @@
 		?>
 		</select>
 		<div id="tht_nm" style="display:contents">
-		<label size> 상영관 이름 : </label><select name="tht_nm"><option value='' selected>--선택--</option>
+		<label size> 상영관 이름 : </label><select id="tht_dropdown" name="tht_nm"><option value='' selected>--선택--</option>
 		</select></div>
-		<label size>날 짜 :</label><input type="text" name="sch_day" OnClick="Calendar(this, 'down','no');">
-		<div id="calendar"></div>
+		<label size>날 짜 :</label><input type="text" id="sch_day" name="sch_day" OnClick="Calendar(this, 'down','no');">
+		<div id="calendar"></div> <button id="exam" type="button">상영시간 확인하기</button>
 		<div id="get_time" style="display:contents">
 		<label size> 상영 시간 : </label><select name="scr_stt_time"><option value='' selected>--선택--</option>
                 </select><div>
@@ -186,7 +218,7 @@
            </div>
             <input class="button" id="button_submit" type="submit" value="상영일정 추가하기" onclick="validcheck();">
             </form>
-		
+			
         </div>
       </div>
     </div>

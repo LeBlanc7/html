@@ -62,7 +62,8 @@ function doClick() {															// 날자를 선택하였을 경우
 			location="attendance.php?today="+cal_Day+"&s_name="+s_name+"&e_name="+e_name+"&id_order="+id_order+"&list_mode="+list_mode;
 		}
 	}
-	minical.style.display='none';												// 화면에서 지움
+	minical.style.display='none';				
+	// 화면에서 지움
 }
 
 function doOut() {
