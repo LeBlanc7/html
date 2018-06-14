@@ -79,7 +79,6 @@
 		var tht = $('#tht_dropdown').val();
                 var sch_day = $('#sch_day').val();
                 
-		alert(loc+tht+sch_day);
                 //Ajax for calling php function            
  
                 $.ajax({
@@ -88,7 +87,7 @@
                         datatype : "json",
                         data : { loc : loc, tht_nm : tht, sch_day : sch_day },
                         success : function(data) {
-                		alert(data);
+                		
                                 var result = JSON.parse(data);
                                 var input = "<label size> 상영 시간 : </label><select id='scr_dropdown' name='scr_stt_time'><option value='' selected>--선택--</option>";
                         
