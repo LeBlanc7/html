@@ -14,7 +14,7 @@
 	$temp = oci_fetch_row($result);
 	$seatN = $temp[0];
 
-	$confirm = "SELECT SEAT_NUM,SEAT_ROW,SEAT_COL FROM SEAT WHERE THT_NUM='$tht_num' AND LOC_NUM='$loc_num'";
+	$confirm = "SELECT SEAT_NUM,SEAT_ROW,SEAT_COL FROM SEAT WHERE THT_NUM='$tht_num' AND LOC_NUM='$loc_num' ORDER BY SEAT_ROW ASC";
 	$result = oci_parse($conn,$confirm);
 	oci_execute($result);
 		
@@ -39,7 +39,7 @@
 		{
 			if($flag==0)
 			{
-				echo "<div id='".$seat_row."'>";
+				echo "<div id='".$seat_row."'><b style='margin-right: 7px'>".$seat_row."</b>";
 				echo "<input type='checkbox' name='check[]' disabled value='".$seat_nm."'>";
 				$flag = 1;
 			}
@@ -57,7 +57,7 @@
 		{			
 			if($flag==0)
 			{
-				echo "<div id='".$seat_row."'>";
+				echo "<div id='".$seat_row."'><b style='margin-right : 7px'>".$seat_row."</b>";
 				echo "<input type='checkbox' name='check[]' value='".$seat_nm."'>";
 				$flag = 1;
 			}

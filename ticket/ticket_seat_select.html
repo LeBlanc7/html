@@ -39,9 +39,16 @@
 			float:right;
 		}
 		.wrap3 {
+			text-align : center;
 			width:20%;
 			height:100%;
 			float:right;
+		}
+		#check_button
+		{
+			height: 100px;
+			color: rgba(30, 22, 54, 0.6);
+                box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
 		}
 	</style>
 
@@ -118,27 +125,24 @@
       <div class="row">
 	 <div class="col-lg-8 col-md-10">
 		<div class="wrap1">
+			<h1 style ="text-align:center;">상영정보</h1><br> 
 			<?php
 				include './ticket_seat_showinfo.php';
 			?>
 		</div>
 		<div class="wrap2">
 			<div class="show_seat" style="text-align:center">
+			<h1 style ="text-align:center;">좌석현황</h1><br>
+			<form method="GET" action="ticket_get_seat.php">
 			<?php
 				include './ticket_seat_avabinfo.php';
 			?>
-			
-			<div id="B">
-                        <input type="checkbox" name="chk_info" disabled value="CSS">
-                        <input type="checkbox" name="chk_info" value="웹디자인">
-			<input type="checkbox" class="chk" name="chk_info" value="HTML">
-                        <input type="checkbox" name="chk_info" value="CSS">
-                        <input type="checkbox" name="chk_info" value="웹디자인">
-			</div>
 			</div>
 		</div>
         </div>
 	<div class="wrap3">
+		<br><br><br><br><h1 style ="text-align:center;">예매하기</h1><br>
+		<input id="check_button" type="submit" value="예매하기&rarr;"></form>
 	</div>
       </div>
     </div>
