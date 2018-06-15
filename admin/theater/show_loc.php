@@ -1,10 +1,10 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
+include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
    // Parse SQL
-    $confirm = "SELECT RT_NM FROM RT";
+    $confirm = "SELECT LOC_NM FROM LOC";
     $result = oci_parse($conn,$confirm);
     oci_execute($result);
-	echo "<p> 등록된 관람등급 : </p>";
+	echo "<p> 등록된 지점 : </p>";
     while($row=oci_fetch_row($result))
     {
 	echo "$row[0]/ ";	
