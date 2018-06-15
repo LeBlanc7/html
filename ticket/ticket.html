@@ -172,27 +172,23 @@
    			$(this).parent().addClass("active"); 
   		})
  	});
-	$(function(){
-                var sBtn = $(".li_loc");    
-                $(document).on("click",".loc_button",function(){   
-                        sBtn.removeClass("active");     
-                        $(this).parent().addClass("active"); 
-                })
+	$(document).on("click",".loc_button",function(){ 
+		var sBtn = $(".li_loc");  
+                sBtn.removeClass("active");     
+                $(this).parent().addClass("active"); 
         });
-	$(function(){
-                var sBtn = $(".li_date");    
-                $(document).on("click",".date_button",function(){   
-                        sBtn.removeClass("active");     
-                        $(this).parent().addClass("active"); 
-                })
+	$(document).on("click",".date_button",function(){ 
+                var sBtn = $(".li_date");  
+                sBtn.removeClass("active");     
+                $(this).parent().addClass("active"); 
         });
-	$(function(){
-                var sBtn = $(".li_time");    
-                $(document).on("click",".time_button",function(){   
-                        sBtn.removeClass("active");     
-                        $(this).parent().addClass("active"); 
-                })
+	$(document).on("click",".time_button",function(){ 
+                var sBtn = $(".li_time");  
+                sBtn.removeClass("active");     
+                $(this).parent().addClass("active"); 
         });
+
+
 
     </script>
 	<style>
