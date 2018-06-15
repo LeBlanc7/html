@@ -27,6 +27,7 @@
         <!-- login template-->
         <link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' rel = 'stylesheet prefetch'>
         <link href="css/style.css" rel="stylesheet">
+	
     </head>
 
     <body>
@@ -98,11 +99,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-10 mx-auto">
-                      <?php
+			<div class="wrap1" style="text-align:center; width:70%; float:left;"> 
+                     <?php
                         if(empty($_GET['id'])==false){
-                          echo "<p>".$_GET['id']."</p>";
+                          include './member_info.php';
                         }
                       ?>
+			</div>
+			<div class="wrap2" style="text-align:center; width:30%; float:right">
+				<br><br><br>
+				<form>
+				<input type="button" value="예매내역확인" onclick="window.location.href='show_ticket.html'"/>
+				</form>
+			</div>
                     </div>
                 </div>
             </div>
