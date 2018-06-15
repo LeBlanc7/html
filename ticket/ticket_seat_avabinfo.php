@@ -18,62 +18,62 @@
 	$result = oci_parse($conn,$confirm);
 	oci_execute($result);
 		
-	if($seatN == 240) 
+
+	$i = 1;
+	$flag = 0;
+
+	while($row = oci_fetch_row($result))
 	{
-		$i = 1;
-		$flag = 0;
+		$seat_num = $row[0];
+		$seat_row = $row[1];
+		$seat_col = $row[2];			
+		$seat_nm = $seat_row.$seat_col;
 
-		while($row = oci_fetch_row($result))
+		$confirm = "SELECT COUNT(*) AS COUNT FROM SEAT_AVAB WHERE THT_NUM='$tht_num' AND LOC_NUM='$loc_num' AND SCH_NUM='$_GET[sch_num]' AND SEAT_NUM='$seat_num'";
+		$result1 = oci_parse($conn,$confirm);
+		oci_execute($result1);
+		$temp = oci_fetch_row($result1);
+		$valid = $temp[0];
+
+		if($valid>0)
 		{
-			$seat_num = $row[0];
-			$seat_row = $row[1];
-			$seat_col = $row[2];			
-			$seat_nm = $seat_row.$seat_col;
-	
-			$confirm = "SELECT COUNT(*) AS COUNT FROM SEAT_AVAB WHERE THT_NUM='$tht_num' AND LOC_NUM='$loc_num' AND SCH_NUM='$_GET[sch_num]' AND SEAT_NUM='$seat_num'";
-        		$result1 = oci_parse($conn,$confirm);
-        		oci_execute($result1);
-			$temp = oci_fetch_row($result1);
-			$valid = $temp[0];
-
-			if($valid>0)
+			if($flag==0)
 			{
-
+				echo "<div id='".$seat_row."'>";
+				echo "<input type='checkbox' name='check[]' disabled value='".$seat_nm."'>";
+				$flag = 1;
 			}
 			else
 			{
-				if($i<=20)
-				{
-					if($flag==0)
-					{
-						echo "<div id='".$seat_row."'>";
-						echo "<input type='checkbox' name='check[]' value='".$seat_nm."'>";
-						$flag = 1;
-					}
-					else
-					{
-						echo "<input type='checkbox' name='check[]' value='".$seat_nm."'>";
-					}
-					if($i==20)
-					{
-						echo "</div>";
-						$flag = 0;
-					}
-				}
-				else if(20< $i && $i <=40)
-				{	
-
-				}	
-			
-			
+				echo "<input type='checkbox' name='check[]' disabled value='".$seat_nm."'>";
 			}
-			$i++;					
-
+			if(($i%20)==0)
+			{
+				echo "</div>";
+				$flag = 0;
+			}
 		}
-	}
-	else
-	{
+		else
+		{			
+			if($flag==0)
+			{
+				echo "<div id='".$seat_row."'>";
+				echo "<input type='checkbox' name='check[]' value='".$seat_nm."'>";
+				$flag = 1;
+			}
+			else
+			{
+				echo "<input type='checkbox' name='check[]' value='".$seat_nm."'>";
+			}
+			if(($i%20)==0)
+			{
+				echo "</div>";
+				$flag = 0;
+			}					
+		}
+		$i++;					
 
-	}	
+	}
+	
 		
 ?>
