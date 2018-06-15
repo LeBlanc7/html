@@ -63,7 +63,21 @@
                                         $success1 = oci_execute($result1,OCI_DEFAULT);
                                         oci_commit($conn);
 					
+					$user = $_SESSION['user_id'];
+					$que = "SELECT PNT FROM MEM WHERE MEM_ID = '$user' ";
+                                        $res = oci_parse($conn,$que);
+                                        oci_execute($res);
+                                        $row=oci_fetch_row($res);
+                                        $point = $row[0];
 					
+					$plus_point = $_POST['pnt'];
+					$point = $point + $plus_point/4;
+					
+					$query1 = "UPDATE MEM SET PNT='$point' WHERE MEM_ID='$user'";
+                                        $result1 = oci_parse($conn,$query1);
+                                        $success1 = oci_execute($result1,OCI_DEFAULT);
+                                        oci_commit($conn);
+
 				}
 				echo "<script>alert('성공적으로 예매가 되었습니다.');location.replace('/index.html');</script>"; 
 			}	
