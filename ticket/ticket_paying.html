@@ -25,22 +25,34 @@
 	<script>
 		$(document).ready(function(){
 		$('#py_mtd').change(function(){
-			var dr = $(this).val();
-			if(dr==100)
-			{
-				$('#dr').val("포인트사용");
-			}
-			else
-			{	
-				var money = $('#hidden_money').val();
-				money = money - money*dr/100;
-				var point = money/25;				
+			var py_mtd_nm = $(this).val();
 
-				dr = dr + "%";
-				$('#dr').val(dr);
-				$('#money').val(money);
-				$('#plus_pnt').val(point);
-			}
+			$.ajax({
+				type : 'POST',
+                        	url : '/ticket/get_pymtd_num.php',
+                        	datatype : "json",
+                        	data : { py_mtd_nm : py_mtd_nm },
+                        	success : function(data) {	
+                                	var result = JSON.parse(data);
+					
+					var dr = result[0].dr;
+					if(dr==100)
+					{
+						$('#dr').val("포인트사용");
+					}
+					else
+					{	
+						var money = $('#hidden_money').val();
+						money = money - money*dr/100;
+						var point = money/25;				
+						dr = dr + "%";
+						$('#dr').val(dr);
+						$('#money').val(money);
+						$('#plus_pnt').val(point);
+					}
+         	               }     
+				
+			})
 		});	
 	});
 	</script>
