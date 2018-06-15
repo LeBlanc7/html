@@ -24,6 +24,24 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
+	
+	<style>
+		.wrap1 {
+			width:20%;
+			height: 100%;
+			float : left;
+		}
+		.wrap2 {
+			width:60%;
+			height:100%;
+			float:left;
+		}
+		.wrap3 {
+			width:20%;
+			height:100%;
+			float:right;
+		}
+	</style>
 
   </head>
 
@@ -96,8 +114,20 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          
+        <div class="seat" style="width:100%">
+		<div class="wrap1">
+			<?php
+				include './ticket_seat_showinfo.php';
+			?>
+		</div>
+
+		<div class="wrap2">
+		
+		</div>
+
+		<div class="wrap3">
+		
+		</div>          
         </div>
       </div>
     </div>
