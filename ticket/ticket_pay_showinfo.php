@@ -62,5 +62,6 @@
 
 	$money = $_GET['seat_count']*8000;
 	echo "<p>예매 가격 : $money 원 </p>";
+	echo "<button id='hidden_money' type='button' style='display:none' value='$money'></button>";
 ?>
 

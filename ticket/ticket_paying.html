@@ -21,6 +21,29 @@
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		$('#py_mtd').change(function(){
+			var dr = $(this).val();
+			if(dr==100)
+			{
+				$('#dr').val("포인트사용");
+			}
+			else
+			{	
+				var money = $('#hidden_money').val();
+				money = money - money*dr/100;
+				var point = money/25;				
+
+				dr = dr + "%";
+				$('#dr').val(dr);
+				$('#money').val(money);
+				$('#plus_pnt').val(point);
+			}
+		});	
+	});
+	</script>
 
 
    <!-- Custom styles for this template -->
@@ -135,16 +158,24 @@
 			<h1 style ="text-align:center;">결제방법선택</h1><br>
 			<div class="form_insert">
 			<form name="insertform" method="POST" action="ticket_make.php" onsubmit='return validcheck()'>
-				<label size> 결제방법 : </label><select name="py_mtd_num"><option value='' selected>--선택--</option>
+				<label size> 결제방법 : </label><select id="py_mtd" name="py_mtd_nm"><option value='' selected>--선택--</option>
 				<?php
 					include './ticket_get_pym.php';
 				?>
 				</select><br><br>
-				<label size>할인율 : <input type="text" name="dr" value="0%" style="width:10%"><br><br>
+				<label size>할인율 : <input type="text" id="dr" name="dr" value="0%" style="width:30%"><br><br>
 				<?php
-					echo "<label size>결제 가격 : <input type='text' name='dr' value='$money' style='width:50%'>";
+					echo "<label size>결제 가격 : <input type='text' id='money' name='money' value='$money' style='width:50%'>";
 					$point = $money / 25;
-					echo "<br><br><label size>적립 포인트 : <input type='text' name='plus_pnt' value='$point' style='width:50%'>";
+					echo "<br><br><label size>적립 포인트 : <input type='text' id='plus_pnt' name='pnt' value='$point' style='width:50%'>";
+					echo "<input type='text' style='display:none' name='sch_num' value='".$_GET[sch_num]."'>";
+					for ($i=0;$i<$_GET['seat_count'];$i++)
+					{			
+						$var = (string)($i+1);
+						$seat = "seat".$var;
+						echo "<input type='text' style='display:none' name='$seat' value='".$_GET[$seat]."'>";	
+					}
+					echo "<input type='text' style='display:none' name='seat_count' value='".$_GET[seat_count]."'>";
 				?>	
 			</div></div>
 		</div>
@@ -203,6 +234,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="/js/clean-blog.min.js"></script>
+    <script type="text/javascript" src="/ticket/js/ticket_validcheck.js"></script>
     </div>
   </body>
 
