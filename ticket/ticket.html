@@ -163,24 +163,80 @@
                                }       
                       })
                 });
+
+		$(document).on("click",".time_button",function(){
+                //Selected value
+		var sch_num = $(this).val();
+                var mv_num = $('#hide_mv_button').val(); 
+		var loc_num = $('#hide_loc_button').val();
+		var sch_day = $('#hide_date_button').val();  
+                   
+		alert(mv_num);
+		alert(loc_num);
+		alert(sch_day);
+		alert(sch_num);
+		   
+                //Ajax for calling php function                           
+                $.ajax({
+                        type : 'POST',
+                        url : '/ticket/make_ticket_button.php',
+                        datatype : "json",
+                        data : { sch_num : sch_num},
+                        success : function(data) {
+                                alert(data);
+				/*   
+                                var result = JSON.parse(data);
+                                var input = "<ul class='ul_date' style='list-style:none'>";
+                        
+                                for(var i=0;i<result.length;i++){
+                                        var day = result[i].sch_day.toString();
+                                        
+                                        var day1 = day.substr(4,2);
+                                        var day2 = day.substr(6,2); 
+                                        input = input + "<li class='li_date'><button type='button' class='date_button' value='"
+                                                + result[i].sch_day + "'>"
+                                                + day1+ "월" + day2 + "일</button></li>"; 
+                                }
+                                input = input + "</ul>";
+                                
+                                $("#date").html(input);
+                                $(".hide_loc_num").html(hide_loc_num);
+                                  */           
+                               }       
+                      })
+                });
+
+
 		
 	});
 	$(function(){
   		var sBtn = $("ul > li");    
   		sBtn.find(".mv_button").click(function(){   
    			sBtn.removeClass("active");     
-   			$(this).parent().addClass("active"); 
+   			$(this).parent().addClass("active");
+			var sBtn_loc = $(".li_loc");  
+                	sBtn_loc.removeClass("active");
+			var sBtn_date = $(".li_date");  
+                        sBtn_date.removeClass("active"); 
+			var sBtn_time = $(".li_time");  
+                        sBtn_time.removeClass("active");   
   		})
  	});
 	$(document).on("click",".loc_button",function(){ 
 		var sBtn = $(".li_loc");  
                 sBtn.removeClass("active");     
                 $(this).parent().addClass("active"); 
+		var sBtn_date = $(".li_date");  
+                sBtn_date.removeClass("active"); 
+                var sBtn_time = $(".li_time");  
+                sBtn_time.removeClass("active");
         });
 	$(document).on("click",".date_button",function(){ 
                 var sBtn = $(".li_date");  
                 sBtn.removeClass("active");     
                 $(this).parent().addClass("active"); 
+		var sBtn_time = $(".li_time");  
+                sBtn_time.removeClass("active");
         });
 	$(document).on("click",".time_button",function(){ 
                 var sBtn = $(".li_time");  
@@ -192,6 +248,16 @@
 
     </script>
 	<style>
+		.wrap1 {
+			width : 80%;
+			height: 100%;
+			float :left;
+		}
+		.wrap2 {
+			width : 20%;
+			height:100%;
+			float : right;
+		}
 		.mv_button, .loc_button , .date_button{
 			margin : 3px;
 		}
@@ -268,7 +334,7 @@
 			float : left;
 		}
 		.time {
-			width : 400px;
+			width : 320px;
 			margin : 10px;
 			float :left;
 		}
@@ -348,7 +414,7 @@
     <!-- Main Content -->
     <div class="container">
       <div class="row">
-        <div class="ticket">
+        <div class="ticket" style="width:100%">
 		<div class="wrap1">
 			<div class="movie">
 				<h1 style="text-align:center;">영화</h1>
@@ -378,6 +444,11 @@
 		</div>
 		<div class="wrap2">
 			<div class="next">
+				<br><br>
+				<h1 style ="text-align:center;">좌석선택</h1>
+				<br>
+				<div id="next">
+				</div>
 			</div>
 		</div>
         </div>
