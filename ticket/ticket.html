@@ -43,10 +43,10 @@
                         data : { mv_num : mv_num },
                         success : function(data) {	
                                 var result = JSON.parse(data);
-                                var input = "<ul style='list-style:none'>";
+                                var input = "<ul class='ul_loc' style='list-style:none'>";
                         
                                 for(var i=0;i<result.length;i++){
-					input = input + "<li><button type='button' class='loc_button' value='"
+					input = input + "<li class='li_loc'><button type='button' class='loc_button' value='"
 						+ result[i].loc_num + "'>"
 						+ result[i].loc_nm + "</button></li>"; 
                                 }
@@ -75,14 +75,14 @@
                         success : function(data) {
                                    
                                 var result = JSON.parse(data);
-                                var input = "<ul style='list-style:none'>";
+                                var input = "<ul class='ul_date' style='list-style:none'>";
                         
                                 for(var i=0;i<result.length;i++){
 					var day = result[i].sch_day.toString();
 					
 					var day1 = day.substr(4,2);
 					var day2 = day.substr(6,2); 
-                                        input = input + "<li><button type='button' class='date_button' value='"
+                                        input = input + "<li class='li_date'><button type='button' class='date_button' value='"
                                                 + result[i].sch_day + "'>"
                                                 + day1+ "월" + day2 + "일</button></li>"; 
                                 }
@@ -128,8 +128,8 @@
 						{
 							input = input + "<div class='sub_time'><h2 style='text-align:center'>"
 								+ result[i].tht_num + "관</h2>"
-								+"<ul style='display:inline-block; list-style:none'>";
-							input = input + "<div class='wrap3'><li><button type='button' value='"
+								+"<ul class='ul_time'style='display:inline-block; list-style:none'>";
+							input = input + "<div class='wrap3'><li class='li_time'><button class='time_button' type='button' value='"
 								+ result[i].sch_num + "'>" +
 								+ scr_time + "시</button>"+result[i].seatN+"좌석</li></div>";
 							
@@ -137,7 +137,7 @@
 						}
 						else
 						{
-							input = input + "<div class='wrap3'><li><button type='button' value='"
+							input = input + "<div class='wrap3'><li class='li_time'><button class='time_button' type='button' value='"
                                                                 + result[i].sch_num + "'>" +
                                                                 + scr_time + "시</button>"+result[i].seatN+"좌석</li></div>";
 
@@ -148,8 +148,8 @@
 						input = input + "</ul></div>";
 						input = input + "<div class='sub_time'><h2 style='text-align:center'>"
                                                                 + result[i].tht_num + "관</h2>"
-                                                                +"<ul style='display:inline-block; list-style:none'>";
-                                                input = input + "<div class='wrap3'><li><button type='button' value='"
+                                                                +"<ul class='ul_time' style='display:inline-block; list-style:none'>";
+                                                input = input + "<div class='wrap3'><li class='li_time'><button class='time_button' type='button' value='"
                                                         + result[i].sch_num + "'>" +
                                                         + scr_time + "시</button>"+result[i].seatN+"좌석</li></div>";
 					}
@@ -163,7 +163,37 @@
                                }       
                       })
                 });
+		
 	});
+	$(function(){
+  		var sBtn = $("ul > li");    
+  		sBtn.find(".mv_button").click(function(){   
+   			sBtn.removeClass("active");     
+   			$(this).parent().addClass("active"); 
+  		})
+ 	});
+	$(function(){
+                var sBtn = $(".li_loc");    
+                $(document).on("click",".loc_button",function(){   
+                        sBtn.removeClass("active");     
+                        $(this).parent().addClass("active"); 
+                })
+        });
+	$(function(){
+                var sBtn = $(".li_date");    
+                $(document).on("click",".date_button",function(){   
+                        sBtn.removeClass("active");     
+                        $(this).parent().addClass("active"); 
+                })
+        });
+	$(function(){
+                var sBtn = $(".li_time");    
+                $(document).on("click",".time_button",function(){   
+                        sBtn.removeClass("active");     
+                        $(this).parent().addClass("active"); 
+                })
+        });
+
     </script>
 	<style>
 		.mv_button, .loc_button , .date_button{
@@ -173,6 +203,66 @@
 			margin : 10px;
 			float :left;
 		}
+		ul > li > .mv_button {
+			color: #fff;
+  			text-decoration: none;
+  			display: block;
+  			padding: 5px 10px;
+  			background-color: #888;
+		}
+		ul > li:hover > .mv_button,
+ 		ul > li:focus > .mv_button,
+ 		ul > li:active > .mv_button,
+ 		ul > li.active > .mv_button {
+  		color: yellow;
+  		background-color: #000;
+ 		}
+
+		ul > li > .loc_button {
+                        color: #fff;
+                        text-decoration: none;
+                        display: block;
+                        padding: 5px 10px;
+                        background-color: #888;
+                }
+                ul > li:hover > .loc_button,
+                ul > li:focus > .loc_button,
+                ul > li:active > .loc_button,
+                ul > li.active > .loc_button {
+                color: yellow;
+                background-color: #000;
+                }
+
+		ul  > li > .date_button {
+                        color: #fff;
+                        text-decoration: none;
+                        display: block;
+                        padding: 5px 10px;
+                        background-color: #888;
+                }
+                ul > li:hover > .date_button,
+                ul > li:focus > .date_button,
+                ul > li:active > .date_button,
+                ul > li.active > .date_button {
+                color: yellow;
+                background-color: #000;
+                }
+
+		.time_button {
+                        color: #fff;
+                        text-decoration: none;
+                        display: block;
+                        padding: 5px 10px;
+                        background-color: #888;
+                }
+                ul > .wrap3 > li:hover > .time_button,
+                ul > .wrap3 > li:focus > .time_button,
+                ul > .wrap3 > li:active > .time_button,
+                ul > .wrap3 > li.active > .time_button {
+                color: yellow;
+                background-color: #000;
+                }
+
 		.location {
 			margin : 10px;
 			float : left;
