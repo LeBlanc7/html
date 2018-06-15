@@ -1,7 +1,7 @@
 <?php
    include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
    // Parse SQL
-    $confirm = "SELECT * FROM LOC,THT WHERE LOC_NM='$_POS[loc]' AND THT_NM='$_POST[tht_nm]' AND LOC.LOC_NUM=THT.LOC_NUM";
+    $confirm = "SELECT * FROM LOC,THT WHERE LOC_NM='$_POST[loc]' AND THT_NM='$_POST[tht_nm]' AND LOC.LOC_NUM=THT.LOC_NUM";
     $result = oci_parse($conn,$confirm);
     oci_execute($result);
     if(oci_fetch_assoc($result))

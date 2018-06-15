@@ -6,7 +6,7 @@
     $user_id = $_POST['id'];
     $user_pw = $_POST['pw'];
 
-    $confirm = "SELECT * FROM CTMR WHERE CTMR_ID='$_POST[id]' AND CTMR_PW ='$_POST[pw]'";
+    $confirm = "SELECT * FROM MEM WHERE MEM_ID='$_POST[id]' AND MEM_PW ='$_POST[pw]'";
     $result = oci_parse($conn,$confirm);
     oci_execute($result);
     $row = oci_fetch_assoc($result);
@@ -16,7 +16,7 @@
         echo ("<script>alert('등록되지 않은 ID이거나 비밀번호가 틀렸습니다.'); location.replace('login.html');</script>");
     }
     else{
-	$user_name = $row['CTMR_NM'];	
+	$user_name = $row['MEM_NM'];	
 
 	session_start();
 	$_SESSION['user_id'] = $user_id;
