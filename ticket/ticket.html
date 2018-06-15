@@ -28,7 +28,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
 	$(document).ready(function(){
-		$('.mv_button').click(function(){
+		$(document).on("click",".mv_button",function(){
 		//Selected value
 		var mv_num = $(this).val();
 		            
@@ -53,6 +53,10 @@
                                 input = input + "</ul>";				
                              
                                 $("#location").html(input);
+				
+				$("#date").html("");
+				$("#time").html("");
+				$("#next").html("");
 				$(".hide_mv_num").html(hide_mv_num);                                              
          	               }       
   	              })
@@ -89,6 +93,9 @@
                                 input = input + "</ul>";
                                 
                                 $("#date").html(input);
+
+				$("#time").html("");
+				$("#next").html("");
                                 $(".hide_loc_num").html(hide_loc_num);
                                              
                                }       
@@ -158,6 +165,7 @@
                           	input = input + "</ul></div>";
                                 
                                 $("#time").html(input);
+				$("#next").html("");
                                 $(".hide_date_num").html(hide_date_num);
                                              
                                }       
@@ -171,37 +179,23 @@
 		var loc_num = $('#hide_loc_button').val();
 		var sch_day = $('#hide_date_button').val();  
                    
-		alert(mv_num);
-		alert(loc_num);
-		alert(sch_day);
-		alert(sch_num);
-		   
-                //Ajax for calling php function                           
+	        //Ajax for calling php function                           
                 $.ajax({
                         type : 'POST',
                         url : '/ticket/make_ticket_button.php',
                         datatype : "json",
                         data : { sch_num : sch_num},
                         success : function(data) {
-                                alert(data);
-				/*   
+                                			   
                                 var result = JSON.parse(data);
-                                var input = "<ul class='ul_date' style='list-style:none'>";
-                        
-                                for(var i=0;i<result.length;i++){
-                                        var day = result[i].sch_day.toString();
-                                        
-                                        var day1 = day.substr(4,2);
-                                        var day2 = day.substr(6,2); 
-                                        input = input + "<li class='li_date'><button type='button' class='date_button' value='"
-                                                + result[i].sch_day + "'>"
-                                                + day1+ "월" + day2 + "일</button></li>"; 
-                                }
-                                input = input + "</ul>";
-                                
-                                $("#date").html(input);
-                                $(".hide_loc_num").html(hide_loc_num);
-                                  */           
+                                var input = "<form name='hide_info' method='get' action='member_check.php'>"
+					+ "<input type='text' value='" + sch_num + "' name='sch_num' style='display:none'>"
+					+ "<input type='text' value='" + loc_num + "' name='loc_num' style='display:none'>"
+					+ "<input type='text' value='" + result[0].tht_num + "' name='tht_num' style='display:none'>"
+					+ "<div class='check_button'><input id='check_button' type='submit' value='좌석선택&rarr;'></div></form>";
+			                                
+                               $("#next").html(input);
+                                             
                                }       
                       })
                 });
@@ -342,7 +336,18 @@
 			float : left;
 			margin : 3px;
 		}
+		.check_button
+		{
+			text-align : center;
+		}
+		#check_button
+		{
+			height: 100px;
+			color: rgba(30, 22, 54, 0.6);
+                box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
 
+
+		}
 	</style>
   </head>
 
