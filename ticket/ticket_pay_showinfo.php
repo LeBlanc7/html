@@ -44,10 +44,23 @@
 	echo "<p>상영 날짜 : $sch_day</p>";
 	echo "<p>상영 시간 : $scr_stt_time_hour:$scr_stt_time_min ~ $scr_end_time_hour:$scr_end_time_min </p>";
 	echo "<p>좌석 정보 : ";
-	for($i=0;$i<$_GET[seat_count];$i++)
+	for($i=0;$i<$_GET['seat_count'];$i++)
 	{
+		$var = (string)($i+1);
+		$seat = "seat".$var;
+		if($i+1==$_GET['seat_count'])
+		{
+			echo "".$_GET[$seat]."";
+		}
+		else
+		{
+			echo "".$_GET[$seat]." , ";
+		}
 		
 	}
 	echo "</p>";
+
+	$money = $_GET['seat_count']*8000;
+	echo "<p>예매 가격 : $money 원 </p>";
 ?>
 

@@ -133,14 +133,25 @@
 		<div class="wrap2">
 			<div class="show_pym" style="text-align:center">
 			<h1 style ="text-align:center;">결제방법선택</h1><br>
-			<form method="GET" action="ticket_make.php">
-			
-			</div>
+			<div class="form_insert">
+			<form name="insertform" method="POST" action="ticket_make.php" onsubmit='return validcheck()'>
+				<label size> 결제방법 : </label><select name="py_mtd_num"><option value='' selected>--선택--</option>
+				<?php
+					include './ticket_get_pym.php';
+				?>
+				</select><br><br>
+				<label size>할인율 : <input type="text" name="dr" value="0%" style="width:10%"><br><br>
+				<?php
+					echo "<label size>결제 가격 : <input type='text' name='dr' value='$money' style='width:50%'>";
+					$point = $money / 25;
+					echo "<br><br><label size>적립 포인트 : <input type='text' name='plus_pnt' value='$point' style='width:50%'>";
+				?>	
+			</div></div>
 		</div>
         </div>
 	<div class="wrap3">
 		<br><br><br><br><h1 style ="text-align:center;">예매하기</h1><br>
-		<input id="check_button" type="submit" value="예매하기&rarr;"></form>
+		<input id="check_button" type="submit" value="예매하기&rarr;" onclick="validcheck();"></form>
 	</div>
       </div>
     </div>
