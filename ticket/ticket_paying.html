@@ -125,27 +125,22 @@
       <div class="row">
 	 <div class="col-lg-8 col-md-10">
 		<div class="wrap1">
-			<h1 style ="text-align:center;">상영정보</h1> 
+			<h1 style ="text-align:center;">예매정보</h1> 
 			<?php
-				include './ticket_seat_showinfo.php';
-			?>
+				include './ticket_pay_showinfo.php';
+			?>	
 		</div>
 		<div class="wrap2">
-			<div class="show_seat" style="text-align:center">
-			<h1 style ="text-align:center;">좌석현황</h1><br>
-			<form method="GET" action="ticket_get_seat.php">
-			<?php
-				include './ticket_seat_avabinfo.php';
-			?>
+			<div class="show_pym" style="text-align:center">
+			<h1 style ="text-align:center;">결제방법선택</h1><br>
+			<form method="GET" action="ticket_make.php">
+			
 			</div>
 		</div>
         </div>
 	<div class="wrap3">
 		<br><br><br><br><h1 style ="text-align:center;">예매하기</h1><br>
-		<?php
-			echo "<input type='text' style='display:none' name='sch_num' value='".$_GET['sch_num']."'>";
-		?>
-		<input id="check_button" type="submit" value="결제선택&rarr;"></form>
+		<input id="check_button" type="submit" value="예매하기&rarr;"></form>
 	</div>
       </div>
     </div>
