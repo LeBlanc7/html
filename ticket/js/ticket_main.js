@@ -157,7 +157,7 @@ $(document).ready(function(){
 					+ "<input type='text' value='" + sch_num + "' name='sch_num' style='display:none'>"
 					+ "<input type='text' value='" + loc_num + "' name='loc_num' style='display:none'>"
 					+ "<input type='text' value='" + result[0].tht_num + "' name='tht_num' style='display:none'>"
-					+ "<div class='check_button'><input id='check_button' type='submit' value='좌석선택&rarr;'></div></form>";
+					+ "<div class='check_button'><input id='check_button' name='check_button' type='submit' value='좌석선택&rarr;'></div></form>";
 			                                
                                $("#next").html(input);
                                              
