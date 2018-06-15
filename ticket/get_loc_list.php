@@ -1,7 +1,7 @@
 <?php
 	include $_SERVER['DOCUMENT_ROOT'].'/dbconnect.php';
 	// Parse SQL
-	$confirm = "SELECT DISTINCT LOC_NUM FROM SCR_SCH WHERE MV_NUM = '$_POST[mv_num]'";
+	$confirm = "SELECT DISTINCT LOC_NUM FROM SCR_SCH WHERE MV_NUM = '$_POST[mv_num]' ORDER BY LOC_NUM ASC";
 	$result = oci_parse($conn,$confirm);
 	oci_execute($result);
 	
